@@ -229,6 +229,144 @@ export default function DeliveryMarginIsland() {
           </div>
         </div>
       </div>
+
+      {/* Multi-Item Basket Size & Bundling Arbitrage Analysis */}
+      <div className="border-t border-slate-200/70 pt-5 space-y-4">
+        <div>
+          <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900">
+            Dampak Basket Size (Ukuran Keranjang) &amp; Arbitrase Bundling
+          </h4>
+          <p className="text-xs text-slate-500 mt-0.5">
+            Biaya tetap platform Rp 1.000 dan ongkir driver mendilusi margin pada pesanan 1 cup. Bundling dan kemasan 1 Liter adalah kunci profitabilitas delivery F&amp;B di Malang.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+          {/* Basket 1: 1 Cup Solo */}
+          <div className="bg-slate-50/80 border border-slate-200/80 rounded-xl p-4 space-y-2.5 text-xs">
+            <div className="flex items-center justify-between">
+              <span className="font-bold text-slate-900">1x Cup Satuan (Solo)</span>
+              <span className="text-[10px] bg-rose-50 text-rose-700 px-2 py-0.5 rounded-full font-semibold">Margin Rentan</span>
+            </div>
+            <div className="space-y-1 text-[11px] text-slate-600">
+              <div className="flex justify-between">
+                <span>Harga App:</span>
+                <strong className="font-mono text-slate-900">{formatIdr(result.appListedPriceIdr)}</strong>
+              </div>
+              <div className="flex justify-between">
+                <span>Total HPP + Sealer:</span>
+                <span className="font-mono text-rose-700">({formatIdr(inputs.cogsIdr + 800)})</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Fee Tetap + 20% Komisi:</span>
+                <span className="font-mono text-[#D55E00]">({formatIdr(result.platformCutIdr)})</span>
+              </div>
+            </div>
+            <div className="pt-2 border-t border-slate-200/60 flex justify-between items-baseline">
+              <span className="text-[11px] font-semibold text-slate-700">Laba Bersih Resto:</span>
+              <strong className={`font-mono text-sm ${result.isMarginEroded ? 'text-rose-700' : 'text-emerald-700'}`}>
+                {formatIdr(result.netContributionIdr)} ({formatPercent(result.netContributionPct, 0)})
+              </strong>
+            </div>
+            <p className="text-[10px] text-slate-500 leading-tight">
+              Fee Rp 1.000 mengambil 5.3% dari nilai transaksi. Hindari ikut promo diskon kilat pada paket ini.
+            </p>
+          </div>
+
+          {/* Basket 2: 2 Cups Duo */}
+          <div className="bg-slate-50/80 border border-slate-200/80 rounded-xl p-4 space-y-2.5 text-xs">
+            <div className="flex items-center justify-between">
+              <span className="font-bold text-slate-900">Paket Duo Nugas (2 Cup)</span>
+              <span className="text-[10px] bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full font-semibold">Efisiensi Kemasan</span>
+            </div>
+            <div className="space-y-1 text-[11px] text-slate-600">
+              <div className="flex justify-between">
+                <span>Harga App Paket:</span>
+                <strong className="font-mono text-slate-900">{formatIdr(result.appListedPriceIdr * 2)}</strong>
+              </div>
+              <div className="flex justify-between">
+                <span>HPP 2 Cup + Kantong:</span>
+                <span className="font-mono text-rose-700">({formatIdr((inputs.cogsIdr * 2) + 1200)})</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Fee Tetap + 20% Komisi:</span>
+                <span className="font-mono text-[#D55E00]">({formatIdr(Math.round(result.appListedPriceIdr * 2 * 0.20 + 1000))})</span>
+              </div>
+            </div>
+            <div className="pt-2 border-t border-slate-200/60 flex justify-between items-baseline">
+              <span className="text-[11px] font-semibold text-slate-700">Laba Bersih Resto:</span>
+              <strong className="font-mono text-sm text-emerald-700">
+                {formatIdr(Math.round((result.appListedPriceIdr * 2 * 0.80) - 1000 - ((inputs.cogsIdr * 2) + 1200) - (result.promoSubsidyIdr * 2)))} (+31%)
+              </strong>
+            </div>
+            <p className="text-[10px] text-slate-500 leading-tight">
+              Fee Rp 1.000 terbagi jadi Rp 500/cup. Menggunakan 1 kantong kresek ganda menghemat Rp 400 plastik.
+            </p>
+          </div>
+
+          {/* Basket 3: 3 Cups + Snack Attach */}
+          <div className="bg-slate-50/80 border border-slate-200/80 rounded-xl p-4 space-y-2.5 text-xs">
+            <div className="flex items-center justify-between">
+              <span className="font-bold text-slate-900">Squad Bundle (3 Cup + Croffle)</span>
+              <span className="text-[10px] bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full font-semibold">High AOV</span>
+            </div>
+            <div className="space-y-1 text-[11px] text-slate-600">
+              <div className="flex justify-between">
+                <span>Harga App Paket:</span>
+                <strong className="font-mono text-slate-900">Rp 68.000</strong>
+              </div>
+              <div className="flex justify-between">
+                <span>Total HPP Gabungan:</span>
+                <span className="font-mono text-rose-700">(Rp 21.500)</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Potongan Platform Total:</span>
+                <span className="font-mono text-[#D55E00]">(Rp 14.600)</span>
+              </div>
+            </div>
+            <div className="pt-2 border-t border-slate-200/60 flex justify-between items-baseline">
+              <span className="text-[11px] font-semibold text-slate-700">Laba Bersih Resto:</span>
+              <strong className="font-mono text-sm text-emerald-700">
+                Rp 24.800 (36.5%)
+              </strong>
+            </div>
+            <p className="text-[10px] text-slate-500 leading-tight">
+              Food attachment (snack kentang/croffle HPP Rp 5.500 dijual Rp 18.000) mendongkrak margin kotor keseluruhan.
+            </p>
+          </div>
+
+          {/* Basket 4: Botol 1 Liter */}
+          <div className="bg-emerald-50/50 border border-emerald-200/80 rounded-xl p-4 space-y-2.5 text-xs">
+            <div className="flex items-center justify-between">
+              <span className="font-bold text-emerald-950">Botol 1 Liter Aren (Kos Favorite)</span>
+              <span className="text-[10px] bg-emerald-600 text-white px-2 py-0.5 rounded-full font-bold">★ Margin Champion</span>
+            </div>
+            <div className="space-y-1 text-[11px] text-slate-600">
+              <div className="flex justify-between">
+                <span>Harga App:</span>
+                <strong className="font-mono text-slate-900">Rp 85.000</strong>
+              </div>
+              <div className="flex justify-between">
+                <span>HPP (700ml susu + botol):</span>
+                <span className="font-mono text-rose-700">(Rp 24.500)</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Potongan GoFood (20% + 1k):</span>
+                <span className="font-mono text-[#D55E00]">(Rp 18.000)</span>
+              </div>
+            </div>
+            <div className="pt-2 border-t border-emerald-200 flex justify-between items-baseline">
+              <span className="text-[11px] font-semibold text-emerald-950">Laba Bersih Resto:</span>
+              <strong className="font-mono text-sm text-emerald-800 font-bold">
+                Rp 40.500 (47.6%)
+              </strong>
+            </div>
+            <p className="text-[10px] text-emerald-900 leading-tight">
+              Tanpa es batu (tidak ada komplain encer). Paling diminati mahasiswa kos untuk stok lemari es saat ujian.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

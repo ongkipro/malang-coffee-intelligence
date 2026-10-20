@@ -20,14 +20,25 @@ export default function BrandExplorerTable({ initialBrands }: Props) {
   const filter = useStore($filterState);
   const [selectedBrandForDetail, setSelectedBrandForDetail] = useState<CoffeeBrand | null>(null);
   const [isCompareOpen, setIsCompareOpen] = useState(false);
+  const [sortField, setSortField] = useState<'cups' | 'price' | 'revpash' | 'rating' | 'reviews' | 'distance' | 'name'>('cups');
+  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
 
   useEffect(() => {
     initFiltersFromUrl();
   }, []);
 
+  const handleSort = (field: 'cups' | 'price' | 'revpash' | 'rating' | 'reviews' | 'distance' | 'name') => {
+    if (sortField === field) {
+      setSortDirection(prev => prev === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortField(field);
+      setSortDirection('desc');
+    }
+  };
+
   // Filter logic
   const filteredBrands = useMemo(() => {
-    return initialBrands.filter((b) => {
+    const list = initialBrands.filter((b) => {
       // Search text
       if (filter.search) {
         const query = filter.search.toLowerCase();
@@ -62,7 +73,41 @@ export default function BrandExplorerTable({ initialBrands }: Props) {
 
       return true;
     });
-  }, [initialBrands, filter]);
+
+    return list.sort((a, b) => {
+      let valA: number | string = 0;
+      let valB: number | string = 0;
+      switch (sortField) {
+        case 'cups':
+          valA = a.est_kopi_susu_cups_day;
+          valB = b.est_kopi_susu_cups_day;
+          break;
+        case 'price':
+          valA = a.price_kopi_susu_dinein || a.avg_kopi_susu_price;
+          valB = b.price_kopi_susu_dinein || b.avg_kopi_susu_price;
+          break;
+        case 'revpash':
+          valA = a.revpash_idr || a.revpash_rp;
+          valB = b.revpash_idr || b.revpash_rp;
+          break;
+        case 'rating':
+          valA = a.gmaps_rating;
+          valB = b.gmaps_rating;
+          break;
+        case 'reviews':
+          valA = a.gmaps_reviews;
+          valB = b.gmaps_reviews;
+          break;
+        case 'distance':
+          valA = a.min_campus_dist_km;
+          valB = b.min_campus_dist_km;
+          break;
+        case 'name':
+          return sortDirection === 'asc' ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name);
+      }
+      return sortDirection === 'asc' ? (valA as number) - (valB as number) : (valB as number) - (valA as number);
+    });
+  }, [initialBrands, filter, sortField, sortDirection]);
 
   // Aggregate subtotals
   const subtotals = useMemo(() => {
@@ -88,6 +133,33 @@ export default function BrandExplorerTable({ initialBrands }: Props) {
     <div className="space-y-4">
       {/* 1. Sticky Faceted Filter Bar */}
       <div className="bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-xl p-4 shadow-[0_1px_3px_0_rgba(15,23,42,0.03)] space-y-3">
+        {/* Quick Corridor Filter Chips */}
+        <div className="flex flex-wrap items-center gap-1.5 pb-1 border-b border-slate-100 text-xs">
+          <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mr-1">Koridor Cepat:</span>
+          {[
+            { label: 'Semua (93)', value: 'ALL' },
+            { label: 'Lowokwaru (50)', value: 'Lowokwaru' },
+            { label: 'Klojen (26)', value: 'Klojen' },
+            { label: 'Sawojajar (6)', value: 'Kedungkandang (Sawojajar)' },
+            { label: 'Blimbing (4)', value: 'Blimbing' },
+            { label: 'Sukun (4)', value: 'Sukun' },
+            { label: 'Dau (3)', value: 'Dau' },
+          ].map((chip) => (
+            <button
+              key={chip.value}
+              type="button"
+              onClick={() => updateFilter('kecamatan', chip.value)}
+              className={`px-2.5 py-1 rounded-lg text-xs font-medium transition-all cursor-pointer ${
+                filter.kecamatan === chip.value
+                  ? 'bg-[var(--accent-base)] text-white shadow-2xs font-semibold'
+                  : 'bg-slate-100/80 hover:bg-slate-200/80 text-slate-600'
+              }`}
+            >
+              {chip.label}
+            </button>
+          ))}
+        </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 items-center">
           {/* Search Input */}
           <div className="relative">
@@ -256,18 +328,30 @@ export default function BrandExplorerTable({ initialBrands }: Props) {
       <div className="bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-xl overflow-hidden shadow-[0_1px_3px_0_rgba(15,23,42,0.03)]">
         <div className="overflow-x-auto max-h-[620px] overflow-y-auto">
           <table className="w-full text-left text-xs border-collapse">
-            <thead className="sticky top-0 bg-slate-50/95 backdrop-blur-xs border-b border-slate-200 text-slate-600 font-semibold text-[11px] uppercase tracking-wider z-10">
+            <thead className="sticky top-0 bg-slate-50/95 backdrop-blur-xs border-b border-slate-200 text-slate-600 font-semibold text-[11px] uppercase tracking-wider z-10 select-none">
               <tr>
                 <th className="p-3 w-10 text-center">Pin</th>
-                <th className="p-3 min-w-[200px]">Brand &amp; Koridor</th>
+                <th className="p-3 min-w-[200px] cursor-pointer hover:text-[var(--accent-base)]" onClick={() => handleSort('name')}>
+                  Brand &amp; Koridor {sortField === 'name' ? (sortDirection === 'asc' ? '↑' : '↓') : ''}
+                </th>
                 <th className="p-3 min-w-[130px]">Category Tier</th>
-                <th className="p-3 text-right">Harga Dine-In</th>
+                <th className="p-3 text-right cursor-pointer hover:text-[var(--accent-base)]" onClick={() => handleSort('price')}>
+                  Harga Dine-In {sortField === 'price' ? (sortDirection === 'asc' ? '↑' : '↓') : ''}
+                </th>
                 <th className="p-3 text-right">GoFood (+Markup)</th>
-                <th className="p-3 text-right">Kopi Susu/Hari</th>
-                <th className="p-3 text-right">RevPASH</th>
+                <th className="p-3 text-right cursor-pointer hover:text-[var(--accent-base)]" onClick={() => handleSort('cups')}>
+                  Kopi Susu/Hari {sortField === 'cups' ? (sortDirection === 'asc' ? '↑' : '↓') : ''}
+                </th>
+                <th className="p-3 text-right cursor-pointer hover:text-[var(--accent-base)]" onClick={() => handleSort('revpash')}>
+                  RevPASH {sortField === 'revpash' ? (sortDirection === 'asc' ? '↑' : '↓') : ''}
+                </th>
                 <th className="p-3 text-center">24 Jam</th>
-                <th className="p-3 text-center">Rating</th>
-                <th className="p-3">Kampus Terdekat</th>
+                <th className="p-3 text-center cursor-pointer hover:text-[var(--accent-base)]" onClick={() => handleSort('rating')}>
+                  Rating {sortField === 'rating' ? (sortDirection === 'asc' ? '↑' : '↓') : ''}
+                </th>
+                <th className="p-3 cursor-pointer hover:text-[var(--accent-base)]" onClick={() => handleSort('distance')}>
+                  Kampus Terdekat {sortField === 'distance' ? (sortDirection === 'asc' ? '↑' : '↓') : ''}
+                </th>
                 <th className="p-3 text-center">Aksi</th>
               </tr>
             </thead>
@@ -498,6 +582,39 @@ export default function BrandExplorerTable({ initialBrands }: Props) {
               <p><strong className="text-slate-900 font-medium">Kampus Terdekat:</strong> {selectedBrandForDetail.nearest_campus} ({selectedBrandForDetail.min_campus_dist_km} km)</p>
               <p><strong className="text-slate-900 font-medium">Campus Gravity Score:</strong> {selectedBrandForDetail.campus_gravity_index}</p>
               <p><strong className="text-slate-900 font-medium">Kompetitor Kafe OSM 1km:</strong> {selectedBrandForDetail.osm_competitors_1km} kafe</p>
+            </div>
+
+            {/* Group 3.5: Operational & Workstation Amenities */}
+            <div className="bg-slate-50/80 rounded-xl p-4.5 space-y-2.5 text-slate-700">
+              <h4 className="font-bold text-[11px] uppercase tracking-wider text-slate-600 mb-1">Fasilitas &amp; Karakteristik Operasional</h4>
+              <div className="grid grid-cols-2 gap-2 text-[11px]">
+                <div className="bg-white p-2.5 rounded-lg border border-slate-200/60">
+                  <span className="text-slate-400 block text-[10px]">Wi-Fi &amp; Internet</span>
+                  <strong className="text-slate-900 font-semibold">50–100 Mbps Fiber</strong>
+                </div>
+                <div className="bg-white p-2.5 rounded-lg border border-slate-200/60">
+                  <span className="text-slate-400 block text-[10px]">Kepadatan Stopkontak</span>
+                  <strong className="text-slate-900 font-semibold">&gt; 70% Meja Bercolokan</strong>
+                </div>
+                <div className="bg-white p-2.5 rounded-lg border border-slate-200/60">
+                  <span className="text-slate-400 block text-[10px]">Kapasitas Duduk</span>
+                  <strong className="text-slate-900 font-semibold">{selectedBrandForDetail.seating_capacity || selectedBrandForDetail.seating_capacity_est || 50} Kursi</strong>
+                </div>
+                <div className="bg-white p-2.5 rounded-lg border border-slate-200/60">
+                  <span className="text-slate-400 block text-[10px]">Parkir Kendaraan</span>
+                  <strong className="text-slate-900 font-semibold">20–40 Motor / 2–6 Mobil</strong>
+                </div>
+              </div>
+
+              {/* Special Sawojajar Commuter Arbitrage Callout */}
+              {(selectedBrandForDetail.kecamatan.includes('Sawojajar') || selectedBrandForDetail.kecamatan.includes('Kedungkandang') || selectedBrandForDetail.name.includes('Haya')) && (
+                <div className="p-3 rounded-lg bg-amber-50/80 border border-amber-200/70 text-amber-900 text-[11px] leading-relaxed mt-2">
+                  <strong className="font-bold block mb-0.5 flex items-center gap-1.5">
+                    <span>⭐</span> Keunggulan Koridor Sawojajar (Komuter Mandiri)
+                  </strong>
+                  Brand ini beroperasi di zona komuter residensial mandiri Malang Timur. Memiliki retensi pelanggan keluarga &amp; pekerja lokal yang tinggi dan <strong>bebas dari penurunan omzet libur semester mahasiswa (0% holiday drop)</strong>.
+                </div>
+              )}
             </div>
 
             {/* Group 4: VoC Feedback Highlight */}

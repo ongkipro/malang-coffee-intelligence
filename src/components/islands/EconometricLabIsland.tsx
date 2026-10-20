@@ -267,6 +267,72 @@ export default function EconometricLabIsland() {
               </ResponsiveContainer>
             </div>
           </div>
+
+          {/* Detailed Econometric Regression Diagnostics & Elasticity */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+            <div className="bg-slate-50/80 p-3.5 rounded-xl space-y-1.5">
+              <span className="font-bold text-[11px] uppercase tracking-wider text-slate-600 block">
+                Statistik Diagnostik Model OLS
+              </span>
+              <div className="space-y-1 text-[11px] text-slate-600 pt-1">
+                <div className="flex justify-between">
+                  <span>Multiple R / Korelasi:</span>
+                  <strong className="font-mono text-slate-900">0.8606</strong>
+                </div>
+                <div className="flex justify-between">
+                  <span>Koefisien Determinasi (R²):</span>
+                  <strong className="font-mono text-slate-900">0.7407 (74.1%)</strong>
+                </div>
+                <div className="flex justify-between">
+                  <span>Adjusted R²:</span>
+                  <strong className="font-mono text-slate-900">0.7258 (72.6%)</strong>
+                </div>
+                <div className="flex justify-between">
+                  <span>Uji F-Statistik (5, 87):</span>
+                  <strong className="font-mono text-emerald-700">F = 49.78 (p &lt; 0.0001)</strong>
+                </div>
+                <div className="flex justify-between">
+                  <span>Durbin-Watson (Serial Autocorr):</span>
+                  <strong className="font-mono text-slate-900">1.94 (Bebas Masalah)</strong>
+                </div>
+                <div className="flex justify-between">
+                  <span>Maksimum VIF (Multikolinieritas):</span>
+                  <strong className="font-mono text-slate-900">1.38 (Aman &lt; 2.0)</strong>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-slate-50/80 p-3.5 rounded-xl space-y-1.5">
+              <span className="font-bold text-[11px] uppercase tracking-wider text-slate-600 block">
+                Elastisitas Harga Permintaan (PED)
+              </span>
+              <div className="space-y-1 text-[11px] text-slate-600 pt-1">
+                <div className="flex justify-between">
+                  <span>Tier 1 Grab &amp; Go:</span>
+                  <span className="font-mono text-rose-700 font-semibold">ε = -1.42 (Elastis)</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Tier 2 Local Champions:</span>
+                  <span className="font-mono text-slate-900">ε = -1.15 (Moderat)</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Tier 3 Modern Kopitiam:</span>
+                  <span className="font-mono text-blue-700 font-semibold">ε = -0.95 (Unit-Elastis)</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Tier 4 24H Mega-Hub:</span>
+                  <span className="font-mono text-slate-900">ε = -1.18 (Moderat)</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Tier 5 Specialty Roastery:</span>
+                  <span className="font-mono text-emerald-700 font-semibold">ε = -0.58 (Inelastis)</span>
+                </div>
+                <p className="text-[10px] text-slate-400 pt-1 leading-tight">
+                  *Specialty &amp; Kopitiam paling kebal terhadap kenaikan harga bahan baku.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

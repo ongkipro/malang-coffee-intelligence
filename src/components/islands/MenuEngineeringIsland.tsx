@@ -101,6 +101,50 @@ export default function MenuEngineeringIsland() {
             />
             <span className="text-[10px] text-slate-500 mt-1 block">Cup 14oz/16oz tebal + sealer logo: Rp 750 - 1.000</span>
           </div>
+
+          {/* Dynamic Single-Cup BOM Recipe Breakdown */}
+          <div className="pt-3 border-t border-slate-200/60 space-y-2">
+            <span className="font-bold text-[11px] uppercase tracking-wider text-slate-700 block">
+              BOM Resep Kopi Susu Aren (16oz)
+            </span>
+            <div className="space-y-1 text-[11px] text-slate-600 bg-white p-3 rounded-lg border border-slate-200/60">
+              <div className="flex justify-between">
+                <span>Espresso Blend (18g):</span>
+                <span className="font-mono text-slate-900">{formatIdr(Math.round((materials.beansPricePerKgIdr / 1000) * 18))}</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Susu Pasteurised (120ml):</span>
+                <span className="font-mono text-slate-900">{formatIdr(Math.round((materials.freshMilkPricePerLiterIdr / 1000) * 120))}</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Gula Aren Cair (25ml):</span>
+                <span className="font-mono text-slate-900">{formatIdr(Math.round((materials.arenSyrupPricePerKgIdr / 1000) * 25))}</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Es Batu Kristal (120g):</span>
+                <span className="font-mono text-slate-900">Rp 180</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Cup, Sealer &amp; Sedotan:</span>
+                <span className="font-mono text-slate-900">{formatIdr(materials.packagingUnitIdr)}</span>
+              </div>
+              <div className="flex justify-between pt-1.5 border-t border-slate-100 font-bold text-slate-900">
+                <span>Total HPP Standar / Cup:</span>
+                <span className="font-mono text-[var(--accent-base)]">
+                  {formatIdr(
+                    Math.round((materials.beansPricePerKgIdr / 1000) * 18) +
+                    Math.round((materials.freshMilkPricePerLiterIdr / 1000) * 120) +
+                    Math.round((materials.arenSyrupPricePerKgIdr / 1000) * 25) +
+                    180 +
+                    materials.packagingUnitIdr
+                  )}
+                </span>
+              </div>
+            </div>
+            <p className="text-[10px] text-slate-400 leading-tight">
+              *Suplai primer: Robusta Dampit Malang (KSU Sridadi), Susu Greenfields Ngajum, Aren Murni Tirtoyudo.
+            </p>
+          </div>
         </div>
 
         {/* Right 8-Column: SKU Menu Table & Quadrants */}

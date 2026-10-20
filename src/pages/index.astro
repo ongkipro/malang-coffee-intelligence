@@ -63,8 +63,220 @@ import MacroChartsIsland from '../components/islands/MacroChartsIsland';
       />
     </div>
 
+    <!-- Row 1.5: TAM / SAM / SOM Market Sizing Architecture -->
+    <div class="bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-xl p-5 shadow-[0_1px_3px_0_rgba(15,23,42,0.03)] space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-100 pb-3">
+        <div>
+          <h3 class="text-sm font-bold text-[var(--text-primary)]">
+            Struktur Ukuran Pasar F&amp;B Kopi Kota Malang (TAM / SAM / SOM)
+          </h3>
+          <p class="text-xs text-[var(--text-muted)] mt-0.5">
+            Dikalibrasi dari data demografi BPS Kota Malang (846.126 penduduk) dan 221.000 mahasiswa aktif 9 perguruan tinggi
+          </p>
+        </div>
+        <span class="text-[11px] font-mono font-medium text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full">
+          Basis Populasi: 1.067.000 jiwa
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+        <div class="bg-slate-50/80 p-4 rounded-xl space-y-1.5">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Total Addressable Market (TAM)</span>
+            <span class="text-[10px] font-semibold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full">100% Seluruh F&amp;B Kopi</span>
+          </div>
+          <div class="text-xl font-bold font-mono text-slate-900 num-tabular">
+            112.700 <span class="text-xs font-normal text-slate-500">cup/hari</span>
+          </div>
+          <p class="text-[11px] text-slate-600 leading-relaxed">
+            Estimasi total perputaran minuman kopi di 1.450+ warung kopi tradisional, warkop, kafe modern, dan jaringan nasional se-Malang Raya. Nilai pasar: <strong class="text-slate-800">Rp 780 Miliar / tahun</strong>.
+          </p>
+        </div>
+
+        <div class="bg-slate-50/80 p-4 rounded-xl space-y-1.5">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Serviceable Addressable Market (SAM)</span>
+            <span class="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">64.4% Kopi Susu Segmen</span>
+          </div>
+          <div class="text-xl font-bold font-mono text-[var(--accent-base)] num-tabular">
+            72.600 <span class="text-xs font-normal text-slate-500">cup/hari</span>
+          </div>
+          <p class="text-[11px] text-slate-600 leading-relaxed">
+            Konsumsi spesifik Kopi Susu (Aren, Butter, Creamy, Macchiato) berbasis espresso machine &amp; mokapot. Nilai pasar terlayani: <strong class="text-slate-800">Rp 495 Miliar – Rp 540 Miliar / tahun</strong>.
+          </p>
+        </div>
+
+        <div class="bg-slate-50/80 p-4 rounded-xl space-y-1.5">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Serviceable Obtainable Market (SOM)</span>
+            <span class="text-[10px] font-semibold text-amber-800 bg-amber-50 px-2 py-0.5 rounded-full">22.7% Korpus 93 Brand</span>
+          </div>
+          <div class="text-xl font-bold font-mono text-slate-900 num-tabular">
+            25.570 <span class="text-xs font-normal text-slate-500">cup/hari</span>
+          </div>
+          <p class="text-[11px] text-slate-600 leading-relaxed">
+            Pangsa pasar langsung yang dikuasai 93 brand komersial (176 outlet fisik) terverifikasi dalam riset ini. Nilai omzet riil: <strong class="text-slate-800">Rp 174 Miliar / tahun</strong> (9,33 Juta cup/thn).
+          </p>
+        </div>
+      </div>
+    </div>
+
     <!-- Row 2: Interactive Macro Charts Island -->
     <MacroChartsIsland client:visible />
+
+    <!-- Row 2.5: Daypart Peak Traffic Dynamics -->
+    <div class="bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-xl p-5 shadow-[0_1px_3px_0_rgba(15,23,42,0.03)] space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-100 pb-3">
+        <div>
+          <h3 class="text-sm font-bold text-[var(--text-primary)]">
+            Dinamika Pola Konsumsi Kopi Susu Berdasarkan Waktu (Daypart Traffic Windows)
+          </h3>
+          <p class="text-xs text-[var(--text-muted)] mt-0.5">
+            Analisis 3 jendela waktu transaksi untuk mengoptimasi rotasi barista dan strategi promosi
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+        <div class="p-4 rounded-xl bg-blue-50/50 border border-blue-100/80 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-blue-900">06:30 – 09:30 · Morning Rush</span>
+            <span class="font-mono font-bold text-blue-700 bg-blue-100/70 px-2 py-0.5 rounded-full text-[10px]">22% Volume</span>
+          </div>
+          <p class="text-slate-600 leading-relaxed">
+            Didominasi pekerja kantor, PNS, dan komuter residensial (Sawojajar &amp; Sulfat) serta sarapan kopitiam di Kayutangan. Durasi transaksi <strong class="text-slate-900">&lt; 3 menit</strong> dengan AOV Rp 18.000 (Grab &amp; Go) hingga Rp 32.000 (Kopitiam + Roti).
+          </p>
+          <div class="text-[11px] text-blue-800 pt-1 font-medium">
+            Kunci Sukses: Sistem POS cepat, bundling roti/snack pagi, cup sealer anti tumpah.
+          </div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-amber-50/50 border border-amber-100/80 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-amber-900">13:00 – 17:30 · WFC &amp; Nugas</span>
+            <span class="font-mono font-bold text-amber-800 bg-amber-100/70 px-2 py-0.5 rounded-full text-[10px]">38% Volume</span>
+          </div>
+          <p class="text-slate-600 leading-relaxed">
+            Puncak kedatangan mahasiswa pengerja tugas, skripsi, dan pekerja remote di koridor Lowokwaru (Suhat/Watugong). Durasi duduk sangat panjang (<strong class="text-slate-900">2,5 s/d 4,5 jam per kursi</strong>), memicu risiko RevPASH rendah.
+          </p>
+          <div class="text-[11px] text-amber-800 pt-1 font-medium">
+            Kunci Sukses: Stopkontak melimpah, Wi-Fi 75–100 Mbps stabil, upselling cemilan sharing.
+          </div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-emerald-50/50 border border-emerald-100/80 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-emerald-900">19:00 – 02:00+ · Night Social &amp; Kalong</span>
+            <span class="font-mono font-bold text-emerald-800 bg-emerald-100/70 px-2 py-0.5 rounded-full text-[10px]">40% Volume</span>
+          </div>
+          <p class="text-slate-600 leading-relaxed">
+            Penyumbang volume terbesar di format 24 jam (Kopi Studio 24, Nakoa, Bento Kopi, Semusim). Bebas tekanan durasi kerja laptop, didominasi nongkrong kelompok dengan <em>food attachment</em> tinggi (mie, kentang, cireng).
+          </p>
+          <div class="text-[11px] text-emerald-800 pt-1 font-medium">
+            Kunci Sukses: Kapasitas kursi &gt; 150 seat, keamanan parkir motor larut malam, playlist santai.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2.75: 5-Corridor Micro-Market Deep-Dive -->
+    <div class="bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-xl p-5 shadow-[0_1px_3px_0_rgba(15,23,42,0.03)] space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-100 pb-3">
+        <div>
+          <h3 class="text-sm font-bold text-[var(--text-primary)]">
+            Karakteristik &amp; Peta Koridor Mikro Kota Malang
+          </h3>
+          <p class="text-xs text-[var(--text-muted)] mt-0.5">
+            Komparasi biaya sewa, profil konsumen, dan tingkat risiko musiman akademik antar-kecamatan
+          </p>
+        </div>
+        <a href="/explorer" class="text-xs font-semibold text-[var(--accent-base)] hover:underline">
+          Lihat persebaran di Peta Spasial →
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-3 text-xs">
+        <div class="bg-slate-50/80 p-3.5 rounded-xl space-y-1.5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between">
+              <strong class="text-slate-900 font-bold">1. Lowokwaru</strong>
+              <span class="font-mono text-[10px] text-blue-700 font-semibold">50 Brand</span>
+            </div>
+            <span class="text-[10px] text-slate-500 block">Suhat, Sigura-gura, MT Haryono</span>
+            <p class="text-slate-600 mt-2 text-[11px] leading-relaxed">
+              Zona <em>hyper-red ocean</em>. Sewa ruko tertinggi (Rp 85M–160M/thn). Sangat rentan libur semester (-28% s/d -35%).
+            </p>
+          </div>
+          <div class="pt-2 border-t border-slate-200/60 text-[10px] text-slate-500">
+            Karakter: <strong class="text-slate-800">Mahasiswa Nugas</strong>
+          </div>
+        </div>
+
+        <div class="bg-slate-50/80 p-3.5 rounded-xl space-y-1.5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between">
+              <strong class="text-slate-900 font-bold">2. Klojen</strong>
+              <span class="font-mono text-[10px] text-emerald-700 font-semibold">26 Brand</span>
+            </div>
+            <span class="text-[10px] text-slate-500 block">Kayutangan, Stasiun, Ijen</span>
+            <p class="text-slate-600 mt-2 text-[11px] leading-relaxed">
+              Kluster cagar budaya &amp; turis akhir pekan. Format kopitiam modern mencetak ROI tercepat (payback 4 bulan) dan margin kotor 74%.
+            </p>
+          </div>
+          <div class="pt-2 border-t border-slate-200/60 text-[10px] text-slate-500">
+            Karakter: <strong class="text-slate-800">Turis &amp; Heritage</strong>
+          </div>
+        </div>
+
+        <div class="bg-slate-50/80 p-3.5 rounded-xl space-y-1.5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between">
+              <strong class="text-slate-900 font-bold">3. Sawojajar</strong>
+              <span class="font-mono text-[10px] text-amber-700 font-semibold">6 Brand</span>
+            </div>
+            <span class="text-[10px] text-slate-500 block">Danau Toba, Velodrome</span>
+            <p class="text-slate-600 mt-2 text-[11px] leading-relaxed">
+              Dipimpin oleh <strong>Haya Espresso Bar</strong>, Easy Breezy, SWAG, dan Daily Dose. Bebas dari guncangan libur kampus, perputaran komuter stabil.
+            </p>
+          </div>
+          <div class="pt-2 border-t border-slate-200/60 text-[10px] text-slate-500">
+            Karakter: <strong class="text-slate-800">Komuter Residensial</strong>
+          </div>
+        </div>
+
+        <div class="bg-slate-50/80 p-3.5 rounded-xl space-y-1.5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between">
+              <strong class="text-slate-900 font-bold">4. Blimbing</strong>
+              <span class="font-mono text-[10px] text-purple-700 font-semibold">4 Brand</span>
+            </div>
+            <span class="text-[10px] text-slate-500 block">Sulfat Raya, Koridor Araya</span>
+            <p class="text-slate-600 mt-2 text-[11px] leading-relaxed">
+              Kawasan perumahan mapan daya beli tinggi. Sensitivitas harga rendah (Rp 22k–35k). Syarat mutlak: area parkir mobil minimal 8–10 slot.
+            </p>
+          </div>
+          <div class="pt-2 border-t border-slate-200/60 text-[10px] text-slate-500">
+            Karakter: <strong class="text-slate-800">Keluarga &amp; Mid-High</strong>
+          </div>
+        </div>
+
+        <div class="bg-slate-50/80 p-3.5 rounded-xl space-y-1.5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between">
+              <strong class="text-slate-900 font-bold">5. Sukun</strong>
+              <span class="font-mono text-[10px] text-rose-700 font-semibold">4 Brand</span>
+            </div>
+            <span class="text-[10px] text-slate-500 block">S. Supriadi, Unikama</span>
+            <p class="text-slate-600 mt-2 text-[11px] leading-relaxed">
+              Segmen harga sensitif (price ceiling Rp 12k–14k). Margin tipis volume moderat, membutuhkan kontrol biaya bahan baku sangat ketat.
+            </p>
+          </div>
+          <div class="pt-2 border-t border-slate-200/60 text-[10px] text-slate-500">
+            Karakter: <strong class="text-slate-800">Budget Kampus Selatan</strong>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Row 3: Strategic Executive Takeaways -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
