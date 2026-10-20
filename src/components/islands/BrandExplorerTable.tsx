@@ -457,7 +457,8 @@ export default function BrandExplorerTable({ initialBrands }: Props) {
 
                       {/* Rating */}
                       <td className="p-2.5 text-center font-mono num-tabular">
-                        ⭐ {b.gmaps_rating.toFixed(1)}
+                        <span className="font-semibold text-slate-900">{b.gmaps_rating.toFixed(1)}</span>
+                        <span className="text-[10px] text-slate-400 font-normal"> / 5.0</span>
                         <span className="text-[10px] text-[var(--text-muted)] block">
                           ({formatNumber(b.gmaps_reviews)})
                         </span>
@@ -492,24 +493,30 @@ export default function BrandExplorerTable({ initialBrands }: Props) {
 
       {/* 4. Single-Brand 36-Attribute Detail Slide-Over Sheet */}
       {selectedBrandForDetail && (
-        <div className="fixed inset-y-0 right-0 z-50 w-full max-w-lg bg-[var(--bg-surface)] border-l border-slate-200 shadow-2xl flex flex-col justify-between overflow-hidden animate-in slide-in-from-right duration-200">
-          <div className="px-6 py-4.5 border-b border-slate-100 bg-white flex items-center justify-between">
-            <div>
-              <h3 className="text-base font-bold text-[var(--text-primary)]">
-                {selectedBrandForDetail.name}
-              </h3>
-              <p className="text-xs text-[var(--text-muted)] mt-0.5">
-                {selectedBrandForDetail.kecamatan} · {selectedBrandForDetail.category_tier.split(':')[1]?.trim() || selectedBrandForDetail.category_tier}
-              </p>
+        <>
+          <div
+            className="fixed inset-0 bg-slate-900/40 backdrop-blur-2xs z-40 transition-opacity"
+            onClick={() => setSelectedBrandForDetail(null)}
+            aria-hidden="true"
+          />
+          <div className="fixed inset-y-0 right-0 z-50 w-full max-w-full sm:max-w-lg bg-[var(--bg-surface)] border-l border-slate-200 shadow-2xl flex flex-col justify-between overflow-hidden animate-in slide-in-from-right duration-200">
+            <div className="px-6 py-4.5 border-b border-slate-100 bg-white flex items-center justify-between">
+              <div>
+                <h3 className="text-base font-bold text-[var(--text-primary)]">
+                  {selectedBrandForDetail.name}
+                </h3>
+                <p className="text-xs text-[var(--text-muted)] mt-0.5">
+                  {selectedBrandForDetail.kecamatan} · {selectedBrandForDetail.category_tier.split(':')[1]?.trim() || selectedBrandForDetail.category_tier}
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setSelectedBrandForDetail(null)}
+                className="text-xs text-slate-500 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
+              >
+                Tutup (Esc)
+              </button>
             </div>
-            <button
-              type="button"
-              onClick={() => setSelectedBrandForDetail(null)}
-              className="text-xs text-slate-500 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
-            >
-              Tutup (Esc)
-            </button>
-          </div>
 
           <div className="flex-1 overflow-y-auto p-6 text-xs space-y-4">
             {/* Group 1: Volume & Revenue */}
@@ -613,8 +620,8 @@ export default function BrandExplorerTable({ initialBrands }: Props) {
               {/* Special Sawojajar Commuter Arbitrage Callout */}
               {(selectedBrandForDetail.kecamatan.includes('Sawojajar') || selectedBrandForDetail.kecamatan.includes('Kedungkandang') || selectedBrandForDetail.name.includes('Haya')) && (
                 <div className="p-3 rounded-lg bg-amber-50/80 border border-amber-200/70 text-amber-900 text-[11px] leading-relaxed mt-2">
-                  <strong className="font-bold block mb-0.5 flex items-center gap-1.5">
-                    <span>⭐</span> Keunggulan Koridor Sawojajar (Komuter Mandiri)
+                  <strong className="font-bold block mb-0.5 text-slate-900">
+                    Keunggulan Koridor Sawojajar (Komuter Mandiri)
                   </strong>
                   Brand ini beroperasi di zona komuter residensial mandiri Malang Timur. Memiliki retensi pelanggan keluarga &amp; pekerja lokal yang tinggi dan <strong>bebas dari penurunan omzet libur semester mahasiswa (0% holiday drop)</strong>.
                 </div>
@@ -656,7 +663,7 @@ export default function BrandExplorerTable({ initialBrands }: Props) {
                 </div>
                 <div className="flex justify-between pt-1.5">
                   <span className="text-slate-500">2. Telemetri Konsumen:</span>
-                  <span className="font-mono text-slate-900">Google Maps ({formatNumber(selectedBrandForDetail.gmaps_reviews || 0)} ulasan &middot; ⭐ {selectedBrandForDetail.gmaps_rating || 4.5})</span>
+                  <span className="font-mono text-slate-900">Google Maps ({formatNumber(selectedBrandForDetail.gmaps_reviews || 0)} ulasan &middot; {selectedBrandForDetail.gmaps_rating || 4.5} / 5.0)</span>
                 </div>
                 <div className="flex justify-between pt-1.5">
                   <span className="text-slate-500">3. Katalog Delivery:</span>
@@ -686,6 +693,7 @@ export default function BrandExplorerTable({ initialBrands }: Props) {
             </button>
           </div>
         </div>
+        </>
       )}
 
       {/* 5. 4-Brand Comparison Drawer */}

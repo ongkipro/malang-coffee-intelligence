@@ -17,34 +17,40 @@ export default function BrandCompareDrawer({
   if (!brands.length) return null;
 
   return (
-    <div className="fixed inset-y-0 right-0 z-50 w-full max-w-2xl bg-[var(--bg-surface)] border-l border-slate-200 shadow-2xl flex flex-col justify-between overflow-hidden animate-in slide-in-from-right duration-200">
-      {/* Header */}
-      <div className="px-6 py-4.5 border-b border-slate-100 bg-white flex items-center justify-between">
-        <div>
-          <h3 className="text-sm font-bold text-[var(--text-primary)]">
-            Side-by-Side Brand Benchmark ({brands.length}/4)
-          </h3>
-          <p className="text-xs text-[var(--text-muted)] mt-0.5">
-            Perbandingan Metrik Kunci &amp; Unit Economics Langsung
-          </p>
+    <>
+      <div
+        className="fixed inset-0 bg-slate-900/40 backdrop-blur-2xs z-40 transition-opacity"
+        onClick={onClose}
+        aria-hidden="true"
+      />
+      <div className="fixed inset-y-0 right-0 z-50 w-full max-w-full sm:max-w-2xl bg-[var(--bg-surface)] border-l border-slate-200 shadow-2xl flex flex-col justify-between overflow-hidden animate-in slide-in-from-right duration-200">
+        {/* Header */}
+        <div className="px-6 py-4.5 border-b border-slate-100 bg-white flex items-center justify-between">
+          <div>
+            <h3 className="text-sm font-bold text-[var(--text-primary)]">
+              Side-by-Side Brand Benchmark ({brands.length}/4)
+            </h3>
+            <p className="text-xs text-[var(--text-muted)] mt-0.5">
+              Perbandingan Metrik Kunci &amp; Unit Economics Langsung
+            </p>
+          </div>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={onClear}
+              className="text-xs text-rose-600 hover:text-rose-800 font-medium px-2 py-1 cursor-pointer"
+            >
+              Clear All
+            </button>
+            <button
+              type="button"
+              onClick={onClose}
+              className="text-xs text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
+            >
+              Close (Esc)
+            </button>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={onClear}
-            className="text-xs text-rose-600 hover:text-rose-800 font-medium px-2 py-1 cursor-pointer"
-          >
-            Clear All
-          </button>
-          <button
-            type="button"
-            onClick={onClose}
-            className="text-xs text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
-          >
-            Close (Esc)
-          </button>
-        </div>
-      </div>
 
       {/* Comparison Grid Table */}
       <div className="flex-1 overflow-y-auto p-6 text-xs space-y-4">
@@ -156,7 +162,7 @@ export default function BrandCompareDrawer({
                 <td className="p-2.5 font-medium text-[var(--text-secondary)]">Google Maps</td>
                 {brands.map((b) => (
                   <td key={b.id} className="p-2.5 font-mono num-tabular border-l border-[var(--divider-subtle)]">
-                    ⭐ {b.gmaps_rating.toFixed(1)} ({formatNumber(b.gmaps_reviews)} rev)
+                    {b.gmaps_rating.toFixed(1)} / 5.0 ({formatNumber(b.gmaps_reviews)} rev)
                   </td>
                 ))}
               </tr>
@@ -202,5 +208,6 @@ export default function BrandCompareDrawer({
         </button>
       </div>
     </div>
+    </>
   );
 }

@@ -38,44 +38,53 @@ const corridorJumps = [
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   </head>
   <body class="bg-[var(--bg-canvas)] text-[var(--text-primary)] min-h-screen flex flex-col antialiased">
-    <!-- Top Persistent Header -->
+    <!-- Top Persistent Header (Icon-Free & Minimalist) -->
     <header class="sticky top-0 z-30 h-14 bg-white/95 backdrop-blur-xs border-b border-slate-200/80 px-4 sm:px-6 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <button type="button" id="mobile-sidebar-toggle" class="md:hidden p-1.5 rounded-lg border border-slate-200 text-slate-600 hover:text-slate-900 cursor-pointer">
-          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <div class="flex items-center gap-2.5 sm:gap-3">
+        <button
+          type="button"
+          id="mobile-sidebar-toggle"
+          aria-label="Toggle navigation menu"
+          class="md:hidden p-2 rounded-md border border-slate-200 text-slate-700 hover:text-slate-950 hover:bg-slate-50 cursor-pointer min-h-[38px] min-w-[38px] flex items-center justify-center"
+        >
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
-        <a href="/" class="flex items-center gap-2.5 font-bold text-sm sm:text-base tracking-tight text-slate-900">
-          <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-[var(--accent-base)] text-white text-xs font-mono font-bold shadow-xs">☕</span>
+        <a href="/" class="flex items-center font-bold text-sm sm:text-base tracking-tight text-slate-950 hover:text-[var(--accent-base)] transition-colors">
           <span>Malang Coffee Intelligence</span>
         </a>
-        <span class="hidden lg:inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-blue-50 text-blue-700">
-          93 Brands · 176 Outlets · 157 OSM POIs · WIB
+        <span class="hidden xl:inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono text-slate-500 bg-slate-100/80">
+          93 Brands · 176 Outlets · 157 OSM POIs
         </span>
       </div>
 
-      <div class="flex items-center gap-2">
-        <button type="button" data-open-datasources class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg border border-emerald-200 bg-emerald-50/80 hover:bg-emerald-100 text-emerald-800 transition-colors shadow-2xs cursor-pointer">
-          <svg class="w-3.5 h-3.5 text-emerald-700" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
-          </svg>
-          <span class="hidden sm:inline">Sumber &amp; Validasi Data</span>
-          <span class="sm:hidden">Data Valid</span>
+      <!-- Icon-Free Header Actions -->
+      <div class="flex items-center gap-1.5 sm:gap-2">
+        <button
+          type="button"
+          data-open-datasources
+          class="px-2.5 sm:px-3 py-1.5 text-xs font-medium rounded-md border border-emerald-300/80 bg-emerald-50 text-emerald-800 hover:bg-emerald-100 transition-colors cursor-pointer"
+        >
+          <span class="hidden sm:inline">Sumber Data</span>
+          <span class="sm:hidden">Data</span>
         </button>
 
-        <button type="button" data-open-mindmap class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 transition-colors shadow-2xs cursor-pointer">
-          <svg class="w-3.5 h-3.5 text-[var(--accent-base)]" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
-          </svg>
-          <span class="hidden sm:inline">Mindmap &amp; Arsitektur</span>
+        <button
+          type="button"
+          data-open-mindmap
+          class="px-2.5 sm:px-3 py-1.5 text-xs font-medium rounded-md border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 transition-colors cursor-pointer"
+        >
+          <span class="hidden sm:inline">Arsitektur</span>
+          <span class="sm:hidden">Arsitektur</span>
         </button>
 
-        <button type="button" id="share-btn" class="inline-flex items-center gap-1 px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-[var(--accent-base)] hover:bg-[var(--accent-hover)] text-white transition-colors shadow-2xs cursor-pointer">
-          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-          </svg>
-          <span>Share</span>
+        <button
+          type="button"
+          id="share-btn"
+          class="px-2.5 sm:px-3.5 py-1.5 text-xs font-medium rounded-md bg-[var(--accent-base)] hover:bg-[var(--accent-hover)] text-white transition-colors cursor-pointer shadow-2xs"
+        >
+          Share
         </button>
       </div>
     </header>
@@ -146,6 +155,93 @@ const corridorJumps = [
       </main>
     </div>
 
+    <!-- Mobile Navigation Drawer Backdrop & Sheet -->
+    <div
+      id="mobile-drawer-backdrop"
+      class="fixed inset-0 bg-slate-900/40 backdrop-blur-2xs z-40 hidden md:hidden transition-opacity"
+      aria-hidden="true"
+    ></div>
+
+    <aside
+      id="mobile-drawer"
+      class="fixed inset-y-0 left-0 w-72 max-w-[85vw] bg-white z-50 p-5 shadow-2xl flex flex-col justify-between transform -translate-x-full transition-transform duration-200 ease-in-out md:hidden overflow-y-auto"
+      aria-label="Mobile Navigation Drawer"
+    >
+      <div class="space-y-5">
+        <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+          <span class="font-bold text-sm tracking-tight text-slate-950">
+            Malang Coffee Intelligence
+          </span>
+          <button
+            type="button"
+            id="mobile-drawer-close"
+            class="p-1.5 rounded-md text-slate-400 hover:text-slate-800 hover:bg-slate-100 cursor-pointer min-h-[36px] min-w-[36px] flex items-center justify-center"
+            aria-label="Close navigation"
+          >
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <div>
+          <span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider px-2">Workstation Modules</span>
+          <nav class="mt-2 space-y-1">
+            {navItems.map((item) => {
+              const isActive = activePath === item.href || (item.href !== '/' && activePath.startsWith(item.href));
+              return (
+                <a
+                  href={item.href}
+                  class={`flex items-center gap-2.5 px-3 py-2.5 text-xs font-medium rounded-lg transition-all min-h-[44px] ${
+                    isActive
+                      ? 'bg-blue-50 text-[var(--accent-base)] font-semibold'
+                      : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900'
+                  }`}
+                >
+                  <svg class="w-4 h-4 shrink-0 text-slate-400" viewBox="0 0 24 24" fill="currentColor">
+                    <path d={item.icon} />
+                  </svg>
+                  <span>{item.label}</span>
+                </a>
+              );
+            })}
+          </nav>
+        </div>
+
+        <div>
+          <span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider px-2">Koridor Strategis</span>
+          <div class="mt-2 space-y-1">
+            {corridorJumps.map((c) => (
+              <a
+                href={c.href}
+                class="flex items-center justify-between px-3 py-2 text-xs text-slate-700 hover:text-slate-950 hover:bg-slate-100 rounded-lg transition-colors min-h-[40px]"
+              >
+                <span class="truncate">{c.name}</span>
+                <span class="text-[10px] text-slate-400 font-mono">{c.count}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-4 border-t border-slate-100 space-y-2 text-xs">
+        <button
+          type="button"
+          data-open-datasources
+          class="w-full text-left py-2.5 px-3 rounded-lg bg-emerald-50 text-emerald-800 hover:bg-emerald-100 font-medium transition-colors min-h-[42px]"
+        >
+          Sumber Data &amp; Validasi (Q1 2026)
+        </button>
+        <button
+          type="button"
+          data-open-mindmap
+          class="w-full text-left py-2.5 px-3 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 font-medium transition-colors min-h-[42px]"
+        >
+          Mindmap &amp; Arsitektur Sistem
+        </button>
+      </div>
+    </aside>
+
     <!-- Mindmap Modal Component -->
     <MindmapModal />
 
@@ -153,13 +249,47 @@ const corridorJumps = [
     <DataSourcesModal />
 
     <script>
+      // Mobile Drawer Controller
+      const mobileToggleBtn = document.getElementById('mobile-sidebar-toggle');
+      const mobileDrawer = document.getElementById('mobile-drawer');
+      const mobileBackdrop = document.getElementById('mobile-drawer-backdrop');
+      const mobileDrawerClose = document.getElementById('mobile-drawer-close');
+
+      const openMobileDrawer = () => {
+        mobileDrawer?.classList.remove('-translate-x-full');
+        mobileBackdrop?.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+      };
+
+      const closeMobileDrawer = () => {
+        mobileDrawer?.classList.add('-translate-x-full');
+        mobileBackdrop?.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+      };
+
+      mobileToggleBtn?.addEventListener('click', openMobileDrawer);
+      mobileDrawerClose?.addEventListener('click', closeMobileDrawer);
+      mobileBackdrop?.addEventListener('click', closeMobileDrawer);
+
+      // Close mobile drawer when pressing Escape
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeMobileDrawer();
+        }
+      });
+
+      // Close mobile drawer when clicking any link inside
+      mobileDrawer?.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', closeMobileDrawer);
+      });
+
       // Share URL action
       const shareBtn = document.getElementById('share-btn');
       shareBtn?.addEventListener('click', async () => {
         try {
           await navigator.clipboard.writeText(window.location.href);
           const original = shareBtn.innerHTML;
-          shareBtn.innerHTML = `<span>Copied!</span>`;
+          shareBtn.innerHTML = `Tersalin!`;
           setTimeout(() => {
             shareBtn.innerHTML = original;
           }, 2000);

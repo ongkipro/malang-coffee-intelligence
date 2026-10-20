@@ -356,8 +356,8 @@ export default function VocPlaybookIsland() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
               {/* Must-Haves */}
               <div className="bg-emerald-50/40 border border-emerald-200/70 p-4 rounded-xl space-y-2">
-                <strong className="text-emerald-950 font-bold flex items-center gap-1.5">
-                  <span className="text-emerald-700">✓</span> Fasilitas &amp; Fitur Wajib (Must-Haves)
+                <strong className="text-emerald-950 font-bold block">
+                  Fasilitas &amp; Fitur Wajib (Must-Haves)
                 </strong>
                 <ul className="space-y-1.5 text-[11px] text-emerald-900">
                   {activePersona.mustHaves.map((item, idx) => (
@@ -371,8 +371,8 @@ export default function VocPlaybookIsland() {
 
               {/* Dealbreakers */}
               <div className="bg-rose-50/40 border border-rose-200/70 p-4 rounded-xl space-y-2">
-                <strong className="text-rose-950 font-bold flex items-center gap-1.5">
-                  <span className="text-rose-700">✕</span> Dealbreakers (Penyebab Rating Bintang 1-2)
+                <strong className="text-rose-950 font-bold block">
+                  Faktor Ketidakpuasan (Dealbreakers)
                 </strong>
                 <ul className="space-y-1.5 text-[11px] text-rose-900">
                   {activePersona.dealbreakers.map((item, idx) => (
@@ -487,7 +487,7 @@ export default function VocPlaybookIsland() {
               Pendaftaran NIB (Nomor Induk Berusaha) berbasis risiko rendah melalui OSS-RBA untuk klasifikasi Restoran/Kafe/Kedai Minuman Minum di Tempat.
             </p>
             <span className="text-[10px] text-emerald-700 font-semibold block pt-1 border-t border-slate-200/60">
-              ✓ Wajib OSS-RBA Aktif
+              Kepatuhan: OSS-RBA Aktif
             </span>
           </div>
 
@@ -503,7 +503,7 @@ export default function VocPlaybookIsland() {
               Kewajiban sertifikasi halal untuk bahan baku F&amp;B (kopi, susu pasteurisasi, sirup perisa, powder boba) sesuai UU Jaminan Produk Halal.
             </p>
             <span className="text-[10px] text-emerald-700 font-semibold block pt-1 border-t border-slate-200/60">
-              ✓ LPPOM MUI / BPJPH
+              Kepatuhan: LPPOM MUI / BPJPH
             </span>
           </div>
 
@@ -519,7 +519,7 @@ export default function VocPlaybookIsland() {
               Kelistrikan komersial tegangan rendah stabil untuk menahan beban mesin espresso 2-group (3.2 kW), undercounter chiller (800W), dan AC split 2 PK.
             </p>
             <span className="text-[10px] text-emerald-700 font-semibold block pt-1 border-t border-slate-200/60">
-              ✓ Rekening PLN Tarif Bisnis
+              Kepatuhan: Rekening PLN Tarif B-1
             </span>
           </div>
 
@@ -535,7 +535,7 @@ export default function VocPlaybookIsland() {
               Pemasangan perangkap lemak (grease trap) pada bak cuci dan penampungan ampas kopi (spent coffee grounds) yang disalurkan ke petani pupuk organik Dampit.
             </p>
             <span className="text-[10px] text-emerald-700 font-semibold block pt-1 border-t border-slate-200/60">
-              ✓ Standar DLH Kota Malang
+              Kepatuhan: Standar DLH Kota Malang
             </span>
           </div>
         </div>

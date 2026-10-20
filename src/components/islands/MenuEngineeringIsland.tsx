@@ -201,20 +201,20 @@ export default function MenuEngineeringIsland() {
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1 text-[11px]">
-            <div className="p-3 rounded-xl bg-slate-50/80 space-y-1">
-              <strong className="text-[var(--status-success-text)] block font-bold">★ STARS</strong>
+            <div className="p-3 rounded-xl bg-slate-50/80 space-y-1 border border-slate-200/60">
+              <strong className="text-[var(--status-success-text)] block font-mono font-bold">STARS</strong>
               <span className="text-slate-500">Margin &gt;65%, Volume &gt;15%. Menu hero utama.</span>
             </div>
-            <div className="p-3 rounded-xl bg-slate-50/80 space-y-1">
-              <strong className="text-[var(--status-info-text)] block font-bold">🐎 PLOWHORSES</strong>
+            <div className="p-3 rounded-xl bg-slate-50/80 space-y-1 border border-slate-200/60">
+              <strong className="text-[var(--status-info-text)] block font-mono font-bold">PLOWHORSES</strong>
               <span className="text-slate-500">Volume &gt;15%, Margin &lt;65%. Traffic generator.</span>
             </div>
-            <div className="p-3 rounded-xl bg-slate-50/80 space-y-1">
-              <strong className="text-[var(--status-warning-text)] block font-bold">🧩 PUZZLES</strong>
+            <div className="p-3 rounded-xl bg-slate-50/80 space-y-1 border border-slate-200/60">
+              <strong className="text-[var(--status-warning-text)] block font-mono font-bold">PUZZLES</strong>
               <span className="text-slate-500">Margin &gt;65%, Volume &lt;15%. Butuh promo bundle.</span>
             </div>
-            <div className="p-3 rounded-xl bg-slate-50/80 space-y-1">
-              <strong className="text-[var(--status-danger-text)] block font-bold">🐕 DOGS</strong>
+            <div className="p-3 rounded-xl bg-slate-50/80 space-y-1 border border-slate-200/60">
+              <strong className="text-[var(--status-danger-text)] block font-mono font-bold">DOGS</strong>
               <span className="text-slate-500">Margin &lt;65%, Volume &lt;15%. Evaluasi hapus SKU.</span>
             </div>
           </div>

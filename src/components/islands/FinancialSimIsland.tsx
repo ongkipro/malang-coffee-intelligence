@@ -169,7 +169,7 @@ export default function FinancialSimIsland() {
                   : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'
               }`}
             >
-              🚀 Optimis (+20% Vol)
+              Optimis (+20% Vol)
             </button>
             <button
               type="button"
@@ -180,7 +180,7 @@ export default function FinancialSimIsland() {
                   : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'
               }`}
             >
-              ⚠️ Inflasi Susu (+15%) &amp; Lesu (-12%)
+              Inflasi Susu (+15%) &amp; Lesu (-12%)
             </button>
           </div>
         </div>
@@ -304,7 +304,7 @@ export default function FinancialSimIsland() {
                 Bulan ke-{simResult.paybackMonth}
               </strong>
               <span className="text-[11px] text-emerald-700 font-medium block">
-                {simResult.paybackMonth <= 6 ? '✓ Sangat Cepat (< 6 bln)' : 'Wajar (6-12 bln)'}
+                {simResult.paybackMonth <= 6 ? 'Sangat Cepat (< 6 bln)' : 'Wajar (6-12 bln)'}
               </span>
             </div>
           </div>

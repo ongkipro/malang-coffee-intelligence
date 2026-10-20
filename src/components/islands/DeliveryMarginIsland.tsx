@@ -41,12 +41,12 @@ export default function DeliveryMarginIsland() {
         </div>
 
         {result.isMarginEroded ? (
-          <span className="px-3 py-1 rounded-full text-xs font-semibold bg-rose-50 text-rose-800 flex items-center gap-1.5 self-start sm:self-auto">
-            <span>⚠️</span> Erosi Margin Terdeteksi (&lt; Rp 4.000/cup)
+          <span className="px-2.5 py-1 rounded-md text-xs font-medium bg-rose-50 text-rose-800 border border-rose-200 flex items-center self-start sm:self-auto">
+            Erosi Margin Terdeteksi (&lt; Rp 4.000/cup)
           </span>
         ) : (
-          <span className="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 flex items-center gap-1.5 self-start sm:self-auto">
-            <span>✓</span> Margin Aman ({formatPercent(result.netContributionPct, 1)})
+          <span className="px-2.5 py-1 rounded-md text-xs font-medium bg-emerald-50 text-emerald-800 border border-emerald-200 flex items-center self-start sm:self-auto">
+            Margin Aman ({formatPercent(result.netContributionPct, 1)})
           </span>
         )}
       </div>
@@ -339,7 +339,7 @@ export default function DeliveryMarginIsland() {
           <div className="bg-emerald-50/50 border border-emerald-200/80 rounded-xl p-4 space-y-2.5 text-xs">
             <div className="flex items-center justify-between">
               <span className="font-bold text-emerald-950">Botol 1 Liter Aren (Kos Favorite)</span>
-              <span className="text-[10px] bg-emerald-600 text-white px-2 py-0.5 rounded-full font-bold">★ Margin Champion</span>
+              <span className="text-[10px] bg-emerald-700 text-white px-2 py-0.5 rounded font-mono font-semibold">Top Margin (47.6%)</span>
             </div>
             <div className="space-y-1 text-[11px] text-slate-600">
               <div className="flex justify-between">
