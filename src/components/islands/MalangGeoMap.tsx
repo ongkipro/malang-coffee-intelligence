@@ -33,12 +33,15 @@ export default function MalangGeoMap({ brands, pois, campuses }: Props) {
   useEffect(() => {
     if (!mapContainerRef.current || mapInstanceRef.current) return;
 
-    // Initialize Leaflet map centered on Kota Malang
+    // Initialize Leaflet map centered on Kota Malang (scrollWheelZoom disabled until focused to prevent scroll hijack)
     const map = L.map(mapContainerRef.current, {
       center: [-7.9666, 112.6326],
       zoom: 13,
       zoomControl: true,
+      scrollWheelZoom: false,
     });
+    map.on('click', () => map.scrollWheelZoom.enable());
+    map.on('mouseout', () => map.scrollWheelZoom.disable());
     mapInstanceRef.current = map;
 
     // CartoDB Positron raster tiles (clean-light, zero-key)
@@ -78,14 +81,19 @@ export default function MalangGeoMap({ brands, pois, campuses }: Props) {
         });
 
         marker.bindPopup(`
-          <div style="font-family: sans-serif; font-size: 12px; line-height: 1.4;">
-            <strong style="font-size: 13px; color: #171717;">${b.name}</strong><br/>
-            <span style="color: #525252;">${b.kecamatan} · ${b.category_tier.split(':')[1]?.trim() || b.category_tier}</span>
-            <hr style="border: 0; border-top: 1px solid #e5e5e5; margin: 6px 0;"/>
-            <div><strong>Kopi Susu:</strong> <span style="color: #4f46e5; font-weight: bold;">${b.est_kopi_susu_cups_day} cups/hari</span></div>
-            <div><strong>Harga:</strong> Rp ${(b.price_kopi_susu_dinein || b.avg_kopi_susu_price).toLocaleString('id-ID')}</div>
-            <div><strong>RevPASH:</strong> Rp ${(b.revpash_idr || b.revpash_rp).toLocaleString('id-ID')}/jam</div>
-            <div><strong>Kampus Terdekat:</strong> ${b.nearest_campus} (${b.min_campus_dist_km} km)</div>
+          <div style="font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif; font-size: 11px; line-height: 1.45; min-width: 210px; max-width: 250px; color: #0f172a;">
+            <div style="font-weight: 700; font-size: 13px; color: #0f172a;">${b.name}</div>
+            <div style="color: #64748b; font-size: 10px; margin-top: 1px;">${b.kecamatan} (${b.corridor}) · ${b.category_tier.split(':')[1]?.trim() || b.category_tier}</div>
+            <div style="border-top: 1px solid #e2e8f0; margin: 7px 0; padding-top: 6px; display: grid; grid-template-columns: 1fr 1fr; gap: 4px;">
+              <div><span style="color:#64748b; font-size:10px; display:block;">Kopi Susu/Hr</span><strong style="color:#2563eb; font-family:monospace;">${b.est_kopi_susu_cups_day} cups</strong></div>
+              <div><span style="color:#64748b; font-size:10px; display:block;">RevPASH</span><strong style="font-family:monospace;">Rp ${(b.revpash_idr || b.revpash_rp).toLocaleString('id-ID')}</strong></div>
+              <div><span style="color:#64748b; font-size:10px; display:block;">Dine-In / GoFood</span><strong style="font-family:monospace;">Rp ${((b.price_kopi_susu_dinein || b.avg_kopi_susu_price)/1000).toFixed(0)}k / Rp ${((b.price_kopi_susu_gofood || b.gofood_price_kopi_susu)/1000).toFixed(0)}k</strong></div>
+              <div><span style="color:#64748b; font-size:10px; display:block;">GMaps / GoFood</span><strong style="font-family:monospace;">${b.gmaps_rating.toFixed(1)} (${b.gmaps_reviews}) · GF ${b.gofood_rating.toFixed(1)}</strong></div>
+            </div>
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; padding:5px 7px; font-size:10px; color:#334155;">
+              <strong style="color:#0f172a; display:block;">${b.signature_kopi_susu}</strong>
+              <span style="color:#065f46; display:block; margin-top:2px;">+ ${b.review_positive_highlight}</span>
+            </div>
           </div>
         `);
 
@@ -227,7 +235,7 @@ export default function MalangGeoMap({ brands, pois, campuses }: Props) {
       {/* Map Canvas */}
       <div
         ref={mapContainerRef}
-        className="w-full h-[540px] rounded-xl overflow-hidden relative z-0 bg-[#f8fafc]"
+        className="w-full h-[360px] sm:h-[520px] rounded-xl overflow-hidden relative z-0 bg-[#f8fafc]"
       />
 
       {/* Map Legend */}

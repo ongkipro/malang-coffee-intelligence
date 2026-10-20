@@ -1,29 +1,27 @@
 ---
 ---
 
-<dialog id="datasources-modal" class="p-0 rounded-2xl border border-slate-200/80 shadow-2xl backdrop:bg-slate-900/40 backdrop:backdrop-blur-xs max-w-4xl w-[94vw] max-h-[88vh] bg-[var(--bg-surface)] text-[var(--text-primary)]">
-  <div class="flex items-center justify-between px-6 py-4.5 border-b border-slate-100 bg-white">
-    <div class="flex items-center gap-2.5">
-      <div class="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-700">
-        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
-        </svg>
-      </div>
+<dialog id="datasources-modal" class="modal-operator rounded-2xl shadow-2xl max-w-4xl w-[94vw] max-h-[88dvh] overflow-hidden">
+  <div class="flex flex-col max-h-[88dvh]">
+    <!-- Mobile Sheet Grab Handle -->
+    <div class="w-10 h-1 rounded-full bg-slate-300 mx-auto mt-2.5 sm:hidden shrink-0"></div>
+
+    <!-- Sticky Header -->
+    <div class="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-slate-100 bg-white shrink-0">
       <div>
-        <h3 class="text-base font-bold text-[var(--text-primary)]">
+        <h3 class="text-sm sm:text-base font-bold text-[var(--text-primary)]">
           Sumber Data, Provenance &amp; Metodologi Validasi
         </h3>
         <p class="text-xs text-[var(--text-muted)] mt-0.5">
           Transparansi data primer, API resmi, dan protokol validasi tiga lapis (Triple-Validation) Malang Coffee Intelligence
         </p>
       </div>
+      <button type="button" data-close-datasources class="text-slate-500 hover:text-slate-900 text-xs font-medium px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 transition-colors cursor-pointer shrink-0 ml-2">
+        Tutup (Esc)
+      </button>
     </div>
-    <button type="button" id="close-datasources" class="text-slate-500 hover:text-slate-900 text-xs font-medium px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 transition-colors cursor-pointer">
-      Tutup (Esc)
-    </button>
-  </div>
   
-  <div class="p-6 overflow-y-auto max-h-[calc(88vh-75px)] text-sm space-y-6">
+    <div class="p-5 sm:p-6 overflow-y-auto overscroll-contain flex-1 text-sm space-y-6">
     <!-- Header Highlight Banner (Clean-Light Operator Baseline) -->
     <div class="p-4 rounded-xl bg-emerald-50/70 border border-emerald-200/80 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs">
       <div>
@@ -204,43 +202,43 @@
               <td class="py-2 px-3 font-semibold text-slate-900">Nama Brand &amp; Cabang Malang</td>
               <td class="py-2 px-3 text-slate-600">Google Maps Places + Sensus Mandiri</td>
               <td class="py-2 px-3 text-slate-600">Verifikasi keberadaan toko aktif per Q1 2026</td>
-              <td class="py-2 px-3 text-emerald-700 font-semibold font-mono">✓ 100% Valid (93 Brand)</td>
+              <td class="py-2 px-3 text-emerald-700 font-semibold font-mono">100% Valid (93 Brand)</td>
             </tr>
             <tr>
               <td class="py-2 px-3 font-semibold text-slate-900">Koordinat Geospasial (Lat, Lon)</td>
               <td class="py-2 px-3 text-slate-600">OpenStreetMap (OSM) Overpass API</td>
               <td class="py-2 px-3 text-slate-600">Pencocokan koordinat GPS WGS84 presisi</td>
-              <td class="py-2 px-3 text-emerald-700 font-semibold font-mono">✓ 157 Node POI Terverifikasi</td>
+              <td class="py-2 px-3 text-emerald-700 font-semibold font-mono">157 Node POI Terverifikasi</td>
             </tr>
             <tr>
               <td class="py-2 px-3 font-semibold text-slate-900">Jarak Kampus &amp; Gravity Index</td>
               <td class="py-2 px-3 text-slate-600">Kalkulasi Haversine + Data PDDikti</td>
               <td class="py-2 px-3 text-slate-600">Jarak linear ke gerbang 9 kampus utama</td>
-              <td class="py-2 px-3 text-emerald-700 font-semibold font-mono">✓ Akurat hingga 10 meter</td>
+              <td class="py-2 px-3 text-emerald-700 font-semibold font-mono">Akurat hingga 10 meter</td>
             </tr>
             <tr>
-              <td class="py-2 px-3 font-semibold text-slate-900">Rating &amp; Ulasan Pelanggan</td>
-              <td class="py-2 px-3 text-slate-600">Google Maps API Telemetry</td>
-              <td class="py-2 px-3 text-slate-600">Ekstraksi jumlah total review terdaftar</td>
-              <td class="py-2 px-3 text-emerald-700 font-semibold font-mono">✓ 48.000+ Ulasan Asli</td>
+              <td class="py-2 px-3 font-semibold text-slate-900">Summary Review &amp; Skor 6-Aspek</td>
+              <td class="py-2 px-3 text-slate-600">Google Maps API Telemetry &amp; NLP</td>
+              <td class="py-2 px-3 text-slate-600">Ekstraksi ulasan, skor 6 dimensi &amp; kutipan asli</td>
+              <td class="py-2 px-3 text-emerald-700 font-semibold font-mono">48.000+ Ulasan Asli</td>
             </tr>
             <tr>
-              <td class="py-2 px-3 font-semibold text-slate-900">Harga Dine-in vs Delivery</td>
-              <td class="py-2 px-3 text-slate-600">Menu Resto Fisik + GoFood / ShopeeFood</td>
-              <td class="py-2 px-3 text-slate-600">Sampling silang harga kopi susu 16oz reguler</td>
-              <td class="py-2 px-3 text-emerald-700 font-semibold font-mono">✓ Terkalibrasi per Cup</td>
+              <td class="py-2 px-3 font-semibold text-slate-900">Komentar GoFood &amp; Multi-Platform</td>
+              <td class="py-2 px-3 text-slate-600">GoFood, GrabFood, ShopeeFood</td>
+              <td class="py-2 px-3 text-slate-600">Sampling harga 4 SKU, standar sealer &amp; prep time</td>
+              <td class="py-2 px-3 text-emerald-700 font-semibold font-mono">Terkalibrasi 93 Merchant</td>
             </tr>
             <tr>
-              <td class="py-2 px-3 font-semibold text-slate-900">HPP / COGS Kopi Susu (Rp 5.050)</td>
-              <td class="py-2 px-3 text-slate-600">Supplier Roastery Dampit + Susu Kawi</td>
-              <td class="py-2 px-3 text-slate-600">Standardized BOM 18g bean, 120ml susu, 25ml aren</td>
-              <td class="py-2 px-3 text-emerald-700 font-semibold font-mono">✓ Terbukti di Industri F&amp;B</td>
+              <td class="py-2 px-3 font-semibold text-slate-900">HPP / COGS &amp; Benchmark Sewa Ruko</td>
+              <td class="py-2 px-3 text-slate-600">Roastery Dampit, Susu Kawi, Pasar Ruko</td>
+              <td class="py-2 px-3 text-slate-600">BOM 18g bean + valuasi sewa tahunan 8 koridor</td>
+              <td class="py-2 px-3 text-emerald-700 font-semibold font-mono">Terbukti di Industri F&amp;B</td>
             </tr>
             <tr>
-              <td class="py-2 px-3 font-semibold text-slate-900">Fluktuasi Libur Akademik</td>
-              <td class="py-2 px-3 text-slate-600">Kalender Akademik UB / UM / UMM</td>
-              <td class="py-2 px-3 text-slate-600">Pemodelan drop -28% pada Juli-Agustus &amp; Jan-Feb</td>
-              <td class="py-2 px-3 text-emerald-700 font-semibold font-mono">✓ Terbukti Lapangan</td>
+              <td class="py-2 px-3 font-semibold text-slate-900">Fluktuasi Libur &amp; Popular Times</td>
+              <td class="py-2 px-3 text-slate-600">Kalender Akademik UB/UM/UMM + GMaps</td>
+              <td class="py-2 px-3 text-slate-600">Kurva 5-daypart harian &amp; drop libur semester</td>
+              <td class="py-2 px-3 text-emerald-700 font-semibold font-mono">Terbukti Lapangan</td>
             </tr>
           </tbody>
         </table>
@@ -267,22 +265,38 @@
         </div>
       </div>
     </div>
+    </div>
+
+    <!-- Sticky Footer -->
+    <div class="px-5 sm:px-6 py-3.5 border-t border-slate-100 bg-white flex items-center justify-between shrink-0">
+      <span class="text-[11px] text-slate-500 font-mono">Triple-Validation Protocol · Q1 2026</span>
+      <button type="button" data-close-datasources class="px-4 py-2 rounded-lg bg-[var(--accent-base)] hover:bg-[var(--accent-hover)] text-white text-xs font-semibold transition-colors cursor-pointer">
+        Selesai &amp; Tutup
+      </button>
+    </div>
   </div>
 </dialog>
 
 <script>
   const datasourcesDialog = document.getElementById('datasources-modal') as HTMLDialogElement | null;
-  const closeDatasourcesBtn = document.getElementById('close-datasources');
+  const closeDatasourcesBtns = document.querySelectorAll('[data-close-datasources]');
   const openDatasourcesTriggers = document.querySelectorAll('[data-open-datasources]');
 
   openDatasourcesTriggers.forEach(btn => {
     btn.addEventListener('click', () => {
       datasourcesDialog?.showModal();
+      document.body.classList.add('overflow-hidden');
     });
   });
 
-  closeDatasourcesBtn?.addEventListener('click', () => {
-    datasourcesDialog?.close();
+  closeDatasourcesBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      datasourcesDialog?.close();
+    });
+  });
+
+  datasourcesDialog?.addEventListener('close', () => {
+    document.body.classList.remove('overflow-hidden');
   });
 
   datasourcesDialog?.addEventListener('click', (e) => {

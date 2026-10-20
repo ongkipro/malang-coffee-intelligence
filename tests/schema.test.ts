@@ -22,7 +22,21 @@ describe('Astro Content Layer Schema Validation', () => {
         console.error(`Validation failed at index ${idx}:`, result.error.format());
       }
       expect(result.success).toBe(true);
+      if (result.success) {
+        expect(result.data.gmaps_review_summary.length).toBeGreaterThan(20);
+        expect(result.data.gofood_comment_summary.length).toBeGreaterThan(20);
+        expect(result.data.gofood_packaging_type.length).toBeGreaterThan(5);
+        expect(result.data.gmaps_aspect_scores).toBeDefined();
+        expect(result.data.sku_price_basket).toBeDefined();
+        expect(result.data.sensory_profile).toBeDefined();
+        expect(result.data.hourly_occupancy_pct).toBeDefined();
+        expect(result.data.corridor_annual_rent_est_rp).toBeGreaterThan(10000000);
+      }
     });
+
+    const kopiJaya = brands.find((b: { name?: string }) => (b.name || '').toLowerCase().includes('kopi jaya'));
+    expect(kopiJaya).toBeDefined();
+    expect(kopiJaya.outlets_in_malang).toBe(7);
   });
 
   it('validates all 157 OSM cafe POIs against OsmPoiSchema', () => {
