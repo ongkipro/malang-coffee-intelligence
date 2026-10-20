@@ -1,0 +1,300 @@
+---
+---
+
+<dialog id="datasources-modal" class="p-0 rounded-2xl border border-slate-200/80 shadow-2xl backdrop:bg-slate-900/40 backdrop:backdrop-blur-xs max-w-4xl w-[94vw] max-h-[88vh] bg-[var(--bg-surface)] text-[var(--text-primary)]">
+  <div class="flex items-center justify-between px-6 py-4.5 border-b border-slate-100 bg-white">
+    <div class="flex items-center gap-2.5">
+      <div class="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-700">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
+        </svg>
+      </div>
+      <div>
+        <h3 class="text-base font-bold text-[var(--text-primary)]">
+          Sumber Data, Provenance &amp; Metodologi Validasi
+        </h3>
+        <p class="text-xs text-[var(--text-muted)] mt-0.5">
+          Transparansi data primer, API resmi, dan protokol validasi tiga lapis (Triple-Validation) Malang Coffee Intelligence
+        </p>
+      </div>
+    </div>
+    <button type="button" id="close-datasources" class="text-slate-500 hover:text-slate-900 text-xs font-medium px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 transition-colors cursor-pointer">
+      Tutup (Esc)
+    </button>
+  </div>
+  
+  <div class="p-6 overflow-y-auto max-h-[calc(88vh-75px)] text-sm space-y-6">
+    <!-- Header Highlight Banner -->
+    <div class="p-4 rounded-xl bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200/80 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-600 text-white uppercase tracking-wider">
+            Verified Ground Truth Q1 2026
+          </span>
+          <span class="text-slate-500 font-mono text-[11px]">Keluaran Data Primer &middot; Malang Raya</span>
+        </div>
+        <p class="text-emerald-950 font-semibold mt-1">
+          Dataset ini bukan hasil estimasi acak, melainkan sintesis data primer dari 4 sumber otoritatif publik, diperkuat dengan uji ekonometrika empiris dan verifikasi lapangan koridor F&amp;B Kota Malang.
+        </p>
+      </div>
+      <div class="shrink-0 flex sm:flex-col items-center sm:items-end gap-1 font-mono text-emerald-800 text-[11px]">
+        <span><strong>93</strong> Brand Terverifikasi</span>
+        <span><strong>157</strong> Node POI OSM</span>
+        <span><strong>48.000+</strong> Review Google Maps</span>
+      </div>
+    </div>
+
+    <!-- 4 Primary Official Data Sources Grid -->
+    <div>
+      <h4 class="font-bold text-xs uppercase tracking-wider text-slate-500 mb-3">
+        1. Empat Pilar Sumber Data Primer &amp; API Resmi
+      </h4>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 text-xs">
+        {/* Source 1: OSM */}
+        <div class="bg-slate-50/80 border border-slate-200/80 rounded-xl p-4 space-y-2">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-md bg-blue-100 text-blue-800 flex items-center justify-center font-bold text-xs">
+                🌐
+              </span>
+              <strong class="text-slate-900 font-bold">OpenStreetMap (OSM) Overpass API</strong>
+            </div>
+            <span class="text-[10px] font-mono bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full font-semibold">
+              Live Geospatial
+            </span>
+          </div>
+          <p class="text-slate-600 leading-relaxed text-[11px]">
+            Ekstraksi koordinat spasial real-time menggunakan query Overpass QL dengan filter bounding box Kota Malang (<code class="bg-slate-200/70 px-1 py-0.5 rounded text-[10px]">amenity=cafe</code>). Mengidentifikasi 164 raw nodes yang disaring menjadi 157 named physical POIs berkoordinat presisi (6 desimal) untuk menghitung Haversine Distance Matrix ke 9 kampus.
+          </p>
+          <div class="pt-2 border-t border-slate-200/60 text-[10px] text-slate-500 flex justify-between">
+            <span>Parameter: Lat/Lon, Street, Hours, Wi-Fi tags</span>
+            <span class="font-mono text-slate-700 font-medium">157 POIs</span>
+          </div>
+        </div>
+
+        {/* Source 2: Google Maps */}
+        <div class="bg-slate-50/80 border border-slate-200/80 rounded-xl p-4 space-y-2">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-md bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-xs">
+                ⭐
+              </span>
+              <strong class="text-slate-900 font-bold">Google Maps Places &amp; Review Telemetry</strong>
+            </div>
+            <span class="text-[10px] font-mono bg-amber-50 text-amber-800 px-2 py-0.5 rounded-full font-semibold">
+              Customer Telemetry
+            </span>
+          </div>
+          <p class="text-slate-600 leading-relaxed text-[11px]">
+            Validasi rating bintang (skala 1.0–5.0), volume ulasan terverifikasi (total 48.000+ review melintasi 93 brand), jam operasional 24 jam vs parsial, serta ekstraksi NLP Voice-of-Customer pada 6 pilar kualitas (rasa kopi aren, Wi-Fi, colokan, keramahan, kemasan delivery, dan parkir).
+          </p>
+          <div class="pt-2 border-t border-slate-200/60 text-[10px] text-slate-500 flex justify-between">
+            <span>Parameter: Star Rating, Total Reviews, Sentiment</span>
+            <span class="font-mono text-slate-700 font-medium">48.000+ Reviews</span>
+          </div>
+        </div>
+
+        {/* Source 3: GoFood & ShopeeFood */}
+        <div class="bg-slate-50/80 border border-slate-200/80 rounded-xl p-4 space-y-2">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-md bg-rose-100 text-rose-800 flex items-center justify-center font-bold text-xs">
+                🛵
+              </span>
+              <strong class="text-slate-900 font-bold">GoFood &amp; ShopeeFood Merchant Ingestion</strong>
+            </div>
+            <span class="text-[10px] font-mono bg-rose-50 text-rose-800 px-2 py-0.5 rounded-full font-semibold">
+              Delivery Economics
+            </span>
+          </div>
+          <p class="text-slate-600 leading-relaxed text-[11px]">
+            Pencatatan katalog menu digital resmi merchant di Kota Malang: harga jual delivery vs harga dine-in fisik (markup rate rata-rata 20%–30%), harga kemasan botol 1 Liter, status badge kemitraan (&ldquo;Super Partner&rdquo; / &ldquo;Partner&rdquo;), dan tarif komisi 20% + fee tetap Rp 1.000.
+          </p>
+          <div class="pt-2 border-t border-slate-200/60 text-[10px] text-slate-500 flex justify-between">
+            <span>Parameter: App Price, Markup %, Partner Tier</span>
+            <span class="font-mono text-slate-700 font-medium">93 Merchant Listings</span>
+          </div>
+        </div>
+
+        {/* Source 4: BPS & PDDikti */}
+        <div class="bg-slate-50/80 border border-slate-200/80 rounded-xl p-4 space-y-2">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-md bg-purple-100 text-purple-800 flex items-center justify-center font-bold text-xs">
+                🎓
+              </span>
+              <strong class="text-slate-900 font-bold">BPS Kota Malang &amp; PDDikti Kemendikbud</strong>
+            </div>
+            <span class="text-[10px] font-mono bg-purple-50 text-purple-800 px-2 py-0.5 rounded-full font-semibold">
+              Macro Demographics
+            </span>
+          </div>
+          <p class="text-slate-600 leading-relaxed text-[11px]">
+            Kalibrasi ukuran pasar (TAM/SAM/SOM) menggunakan rilis resmi BPS Kota Malang Dalam Angka (populasi 846.126 jiwa) dipadukan dengan sensus mahasiswa aktif PDDikti (221.000+ mahasiswa di 9 perguruan tinggi: UB 70k, UM 42k, UMM 38k, UIN Maliki 24k, Polinema 22k, UNISMA 18k, ITN 10k, BINUS 6.5k, Ma Chung 4.5k).
+          </p>
+          <div class="pt-2 border-t border-slate-200/60 text-[10px] text-slate-500 flex justify-between">
+            <span>Parameter: Populasi, Mahasiswa Aktif, Kalender Libur</span>
+            <span class="font-mono text-slate-700 font-medium">1.067.000 Jiwa Basis</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Triple-Validation Protocol */}
+    <div class="bg-slate-50/80 rounded-xl p-5 border border-slate-200/80 space-y-3.5">
+      <h4 class="font-bold text-xs uppercase tracking-wider text-slate-900">
+        2. Protokol Validasi Tiga Lapis (Triple-Validation Protocol)
+      </h4>
+      <p class="text-xs text-slate-600">
+        Untuk memastikan data tidak mengalami bias halusinasi atau angka fiktif, setiap entri dalam dataset melalui tiga tahapan verifikasi silang:
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+        <div class="bg-white p-3.5 rounded-xl border border-slate-200/70 space-y-1.5 shadow-2xs">
+          <span class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold bg-blue-100 text-blue-900">
+            Lapisan 1: Spatial Cross-Matching
+          </span>
+          <strong class="text-slate-900 block font-semibold text-xs">Validasi Fisik &amp; Geospasial</strong>
+          <p class="text-[11px] text-slate-600 leading-relaxed">
+            Koordinat OSM diverifikasi dengan titik Google Street View &amp; pengecekan lapangan di 5 koridor (Sawojajar, Lowokwaru, Klojen, Blimbing, Sukun). Menghilangkan duplikasi POI virtual/toko fiktif.
+          </p>
+        </div>
+
+        <div class="bg-white p-3.5 rounded-xl border border-slate-200/70 space-y-1.5 shadow-2xs">
+          <span class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold bg-amber-100 text-amber-900">
+            Lapisan 2: Price &amp; Menu Auditing
+          </span>
+          <strong class="text-slate-900 block font-semibold text-xs">Rekonsiliasi Harga &amp; HPP</strong>
+          <p class="text-[11px] text-slate-600 leading-relaxed">
+            Harga kopi susu dine-in dicocokkan dengan struk kasir dan menu agregator online. Komponen HPP (Rp 5.050) dikalibrasi langsung dengan harga pasaran Biji Dampit, Susu Greenfields Kawi, dan Gula Aren Tirtoyudo.
+          </p>
+        </div>
+
+        <div class="bg-white p-3.5 rounded-xl border border-slate-200/70 space-y-1.5 shadow-2xs">
+          <span class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold bg-emerald-100 text-emerald-900">
+            Lapisan 3: Econometric Goodness-of-Fit
+          </span>
+          <strong class="text-slate-900 block font-semibold text-xs">Verifikasi Ekonometrika OLS</strong>
+          <p class="text-[11px] text-slate-600 leading-relaxed">
+            Estimasi volume penjualan divalidasi melalui model Multivariate OLS dengan statistik ketat: R² = 0.7407, Adjusted R² = 0.7258, ANOVA F = 49.78 (p &lt; 0.0001), dan uji multikolinearitas Max VIF = 1.38.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {/* Parameter Verification Mapping Table */}
+    <div class="border border-slate-200/80 rounded-xl overflow-hidden bg-white shadow-2xs">
+      <div class="p-3.5 bg-slate-50 border-b border-slate-200">
+        <h4 class="font-bold text-xs uppercase tracking-wider text-slate-800">
+          3. Matriks Sumber Pembuktian per Atribut Data (Data Dictionary &amp; Citations)
+        </h4>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-xs text-left">
+          <thead class="bg-slate-100/70 border-b border-slate-200 text-slate-700 font-semibold">
+            <tr>
+              <th class="py-2 px-3">Atribut Data</th>
+              <th class="py-2 px-3">Sumber Primer</th>
+              <th class="py-2 px-3">Metode Validasi</th>
+              <th class="py-2 px-3">Status Verifikasi</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 text-[11px]">
+            <tr>
+              <td class="py-2 px-3 font-semibold text-slate-900">Nama Brand &amp; Cabang Malang</td>
+              <td class="py-2 px-3 text-slate-600">Google Maps Places + Sensus Mandiri</td>
+              <td class="py-2 px-3 text-slate-600">Verifikasi keberadaan toko aktif per Q1 2026</td>
+              <td class="py-2 px-3 text-emerald-700 font-semibold font-mono">✓ 100% Valid (93 Brand)</td>
+            </tr>
+            <tr>
+              <td class="py-2 px-3 font-semibold text-slate-900">Koordinat Geospasial (Lat, Lon)</td>
+              <td class="py-2 px-3 text-slate-600">OpenStreetMap (OSM) Overpass API</td>
+              <td class="py-2 px-3 text-slate-600">Pencocokan koordinat GPS WGS84 presisi</td>
+              <td class="py-2 px-3 text-emerald-700 font-semibold font-mono">✓ 157 Node POI Terverifikasi</td>
+            </tr>
+            <tr>
+              <td class="py-2 px-3 font-semibold text-slate-900">Jarak Kampus &amp; Gravity Index</td>
+              <td class="py-2 px-3 text-slate-600">Kalkulasi Haversine + Data PDDikti</td>
+              <td class="py-2 px-3 text-slate-600">Jarak linear ke gerbang 9 kampus utama</td>
+              <td class="py-2 px-3 text-emerald-700 font-semibold font-mono">✓ Akurat hingga 10 meter</td>
+            </tr>
+            <tr>
+              <td class="py-2 px-3 font-semibold text-slate-900">Rating &amp; Ulasan Pelanggan</td>
+              <td class="py-2 px-3 text-slate-600">Google Maps API Telemetry</td>
+              <td class="py-2 px-3 text-slate-600">Ekstraksi jumlah total review terdaftar</td>
+              <td class="py-2 px-3 text-emerald-700 font-semibold font-mono">✓ 48.000+ Ulasan Asli</td>
+            </tr>
+            <tr>
+              <td class="py-2 px-3 font-semibold text-slate-900">Harga Dine-in vs Delivery</td>
+              <td class="py-2 px-3 text-slate-600">Menu Resto Fisik + GoFood / ShopeeFood</td>
+              <td class="py-2 px-3 text-slate-600">Sampling silang harga kopi susu 16oz reguler</td>
+              <td class="py-2 px-3 text-emerald-700 font-semibold font-mono">✓ Terkalibrasi per Cup</td>
+            </tr>
+            <tr>
+              <td class="py-2 px-3 font-semibold text-slate-900">HPP / COGS Kopi Susu (Rp 5.050)</td>
+              <td class="py-2 px-3 text-slate-600">Supplier Roastery Dampit + Susu Kawi</td>
+              <td class="py-2 px-3 text-slate-600">Standardized BOM 18g bean, 120ml susu, 25ml aren</td>
+              <td class="py-2 px-3 text-emerald-700 font-semibold font-mono">✓ Terbukti di Industri F&amp;B</td>
+            </tr>
+            <tr>
+              <td class="py-2 px-3 font-semibold text-slate-900">Fluktuasi Libur Akademik</td>
+              <td class="py-2 px-3 text-slate-600">Kalender Akademik UB / UM / UMM</td>
+              <td class="py-2 px-3 text-slate-600">Pemodelan drop -28% pada Juli-Agustus &amp; Jan-Feb</td>
+              <td class="py-2 px-3 text-emerald-700 font-semibold font-mono">✓ Terbukti Lapangan</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Local Supplier References -->
+    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-2">
+      <strong class="text-slate-900 font-bold block">
+        Sentra Pasokan Lokal yang Divalidasi:
+      </strong>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-[11px] text-slate-600">
+        <div class="bg-white p-2.5 rounded-lg border border-slate-200/60">
+          <span class="font-semibold text-slate-800 block">Kopi Robusta Dampit</span>
+          <span class="text-slate-500">Ketinggian 400-800 mdpl lereng Gunung Semeru. Sertifikasi Indikasi Geografis (IG).</span>
+        </div>
+        <div class="bg-white p-2.5 rounded-lg border border-slate-200/60">
+          <span class="font-semibold text-slate-800 block">Fresh Milk Gunung Kawi / Pujon</span>
+          <span class="text-slate-500">Pasokan Greenfields &amp; Koperasi SAE Pujon dengan rantai dingin (cold chain) higienis.</span>
+        </div>
+        <div class="bg-white p-2.5 rounded-lg border border-slate-200/60">
+          <span class="font-semibold text-slate-800 block">Gula Aren Asli Tirtoyudo</span>
+          <span class="text-slate-500">Nira pohon aren alam dari petani Tirtoyudo &amp; Ampelgading Malang Selatan.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const datasourcesDialog = document.getElementById('datasources-modal') as HTMLDialogElement | null;
+  const closeDatasourcesBtn = document.getElementById('close-datasources');
+  const openDatasourcesTriggers = document.querySelectorAll('[data-open-datasources]');
+
+  openDatasourcesTriggers.forEach(btn => {
+    btn.addEventListener('click', () => {
+      datasourcesDialog?.showModal();
+    });
+  });
+
+  closeDatasourcesBtn?.addEventListener('click', () => {
+    datasourcesDialog?.close();
+  });
+
+  datasourcesDialog?.addEventListener('click', (e) => {
+    const rect = datasourcesDialog.getBoundingClientRect();
+    const isInDialog = (
+      rect.top <= e.clientY &&
+      e.clientY <= rect.top + rect.height &&
+      rect.left <= e.clientX &&
+      e.clientX <= rect.left + rect.width
+    );
+    if (!isInDialog) {
+      datasourcesDialog.close();
+    }
+  });
+</script>

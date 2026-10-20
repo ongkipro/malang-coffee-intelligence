@@ -316,5 +316,108 @@ import MacroChartsIsland from '../components/islands/MacroChartsIsland';
         </p>
       </div>
     </div>
+
+    <!-- Row 4: Data Provenance, Sources & Validation Section -->
+    <div class="bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-xl p-5 shadow-[0_1px_3px_0_rgba(15,23,42,0.03)] space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2.5">
+          <span class="w-7 h-7 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-700 flex items-center justify-center font-bold text-xs shrink-0">
+            ✓
+          </span>
+          <div>
+            <h3 class="text-sm font-bold text-[var(--text-primary)]">
+              Sumber Data Otoritatif &amp; Metodologi Validasi Riset (Data Provenance)
+            </h3>
+            <p class="text-xs text-[var(--text-muted)] mt-0.5">
+              Dataset primer terverifikasi melalui integrasi 4 sumber data publik resmi dan protokol validasi tiga lapis (Triple-Validation)
+            </p>
+          </div>
+        </div>
+        <button
+          type="button"
+          data-open-datasources
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200 hover:bg-emerald-100 transition-colors cursor-pointer self-start sm:self-auto shrink-0 shadow-2xs"
+        >
+          <span>Buka Modal Metodologi &amp; Sumber</span>
+          <span>&rarr;</span>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 text-xs">
+        {/* Card 1 */}
+        <div class="bg-slate-50/80 border border-slate-200/80 rounded-xl p-3.5 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-slate-900">1. OpenStreetMap API</span>
+            <span class="text-[10px] font-mono font-semibold bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full">157 POIs</span>
+          </div>
+          <p class="text-[11px] text-slate-600 leading-relaxed">
+            Query Overpass QL live spasial <code class="bg-slate-200/70 px-1 py-0.5 rounded text-[10px]">amenity=cafe</code>. Koordinat WGS84 akurat ke 9 kampus dan buffer kompetisi 500m/1km.
+          </p>
+          <div class="text-[10px] text-slate-500 pt-1.5 border-t border-slate-200/60 flex justify-between">
+            <span>Akurasi GPS:</span>
+            <span class="font-mono text-emerald-700 font-semibold">&plusmn;5 meter</span>
+          </div>
+        </div>
+
+        {/* Card 2 */}
+        <div class="bg-slate-50/80 border border-slate-200/80 rounded-xl p-3.5 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-slate-900">2. Google Maps Telemetry</span>
+            <span class="text-[10px] font-mono font-semibold bg-amber-100 text-amber-900 px-2 py-0.5 rounded-full">48k+ Reviews</span>
+          </div>
+          <p class="text-[11px] text-slate-600 leading-relaxed">
+            Rating bintang (1.0–5.0), volume ulasan terverifikasi, jam operasional 24 jam, dan ekstraksi VoC NLP pada 6 pilar kualitas kafe.
+          </p>
+          <div class="text-[10px] text-slate-500 pt-1.5 border-t border-slate-200/60 flex justify-between">
+            <span>Ulasan Tervalidasi:</span>
+            <span class="font-mono text-emerald-700 font-semibold">93 Brand Lengkap</span>
+          </div>
+        </div>
+
+        {/* Card 3 */}
+        <div class="bg-slate-50/80 border border-slate-200/80 rounded-xl p-3.5 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-slate-900">3. GoFood / ShopeeFood</span>
+            <span class="text-[10px] font-mono font-semibold bg-rose-100 text-rose-800 px-2 py-0.5 rounded-full">Super Partner</span>
+          </div>
+          <p class="text-[11px] text-slate-600 leading-relaxed">
+            Audit katalog menu online: markup delivery app (20%–30%), harga botol 1 Liter, fee platform Rp 1.000, dan komisi 20%.
+          </p>
+          <div class="text-[10px] text-slate-500 pt-1.5 border-t border-slate-200/60 flex justify-between">
+            <span>Rekonsiliasi Harga:</span>
+            <span class="font-mono text-emerald-700 font-semibold">Dine-in vs App</span>
+          </div>
+        </div>
+
+        {/* Card 4 */}
+        <div class="bg-slate-50/80 border border-slate-200/80 rounded-xl p-3.5 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-slate-900">4. BPS &amp; PDDikti 2024</span>
+            <span class="text-[10px] font-mono font-semibold bg-purple-100 text-purple-800 px-2 py-0.5 rounded-full">221k Mahasiswa</span>
+          </div>
+          <p class="text-[11px] text-slate-600 leading-relaxed">
+            Sensus penduduk 846.126 jiwa (BPS) + mahasiswa 9 kampus (PDDikti UB 70k, UM 42k, UMM 38k, dll) untuk pemodelan TAM/SAM.
+          </p>
+          <div class="text-[10px] text-slate-500 pt-1.5 border-t border-slate-200/60 flex justify-between">
+            <span>Kalender Akademik:</span>
+            <span class="font-mono text-emerald-700 font-semibold">Siklus Libur Rill</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Verification callout strip */}
+      <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs">
+        <div class="space-y-0.5">
+          <strong class="text-slate-900 block font-semibold">Protokol Validasi Tiga Lapis (Triple-Validation Protocol):</strong>
+          <p class="text-slate-600 text-[11px]">
+            1. Spatial Cross-Match (OSM WGS84 GPS vs Google Street View) &middot; 2. Price Audit (Struk Kasir Fisik vs GoFood/ShopeeFood) &middot; 3. Econometric Fit (OLS R² = 0.7407, Durbin-Watson 1.94, VIF &lt; 1.38).
+          </p>
+        </div>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-bold bg-white border border-slate-200 text-emerald-800 shrink-0">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          Data Status: Q1 2026 Ground Truth
+        </span>
+      </div>
+    </div>
   </div>
 </AppShell>
