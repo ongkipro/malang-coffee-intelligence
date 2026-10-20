@@ -1,0 +1,47 @@
+---
+interface Props {
+  title: string;
+  value: string;
+  badgeText?: string;
+  badgeVariant?: 'success' | 'warning' | 'danger' | 'info' | 'neutral';
+  footnote?: string;
+  href?: string;
+}
+
+const { title, value, badgeText, badgeVariant = 'neutral', footnote, href } = Astro.props;
+
+const badgeClasses = {
+  success: 'bg-[var(--status-success-bg)] text-[var(--status-success-text)]',
+  warning: 'bg-[var(--status-warning-bg)] text-[var(--status-warning-text)]',
+  danger: 'bg-[var(--status-danger-bg)] text-[var(--status-danger-text)]',
+  info: 'bg-[var(--status-info-bg)] text-[var(--status-info-text)]',
+  neutral: 'bg-slate-100 text-slate-700',
+}[badgeVariant];
+---
+
+<article class="bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-xl p-4.5 flex flex-col justify-between shadow-[0_1px_3px_0_rgba(15,23,42,0.03)] hover:border-slate-300 hover:shadow-[0_4px_12px_0_rgba(15,23,42,0.05)] transition-all">
+  <div class="flex items-start justify-between gap-2 mb-2">
+    <span class="text-[11px] font-semibold text-[var(--text-muted)] uppercase tracking-wider">{title}</span>
+    {badgeText && (
+      <span class={`text-[10px] font-semibold font-mono px-2 py-0.5 rounded-full ${badgeClasses}`}>
+        {badgeText}
+      </span>
+    )}
+  </div>
+  <div>
+    <div class="text-2xl font-bold text-[var(--text-primary)] num-tabular tracking-tight">
+      {href ? (
+        <a href={href} class="hover:text-[var(--accent-base)] transition-colors">
+          {value}
+        </a>
+      ) : (
+        value
+      )}
+    </div>
+    {footnote && (
+      <p class="text-[11px] text-[var(--text-muted)] mt-1.5 line-clamp-1">
+        {footnote}
+      </p>
+    )}
+  </div>
+</article>

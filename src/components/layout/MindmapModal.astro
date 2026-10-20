@@ -1,0 +1,103 @@
+---
+---
+
+<dialog id="mindmap-modal" class="p-0 rounded-2xl border border-slate-200/80 shadow-2xl backdrop:bg-slate-900/40 backdrop:backdrop-blur-xs max-w-4xl w-[94vw] max-h-[85vh] bg-[var(--bg-surface)] text-[var(--text-primary)]">
+  <div class="flex items-center justify-between px-6 py-4.5 border-b border-slate-100 bg-white">
+    <div>
+      <h3 class="text-base font-bold text-[var(--text-primary)]">Malang Coffee Intelligence — Analytical Mindmap &amp; System Taxonomy</h3>
+      <p class="text-xs text-[var(--text-muted)] mt-0.5">Verified Primary Research Corpus &amp; Econometric Architecture</p>
+    </div>
+    <button type="button" id="close-mindmap" class="text-slate-500 hover:text-slate-900 text-xs font-medium px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 transition-colors cursor-pointer">
+      Tutup (Esc)
+    </button>
+  </div>
+  
+  <div class="p-6 overflow-y-auto max-h-[calc(85vh-75px)] text-sm space-y-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="bg-slate-50/80 p-4 rounded-xl space-y-2">
+        <h4 class="font-bold text-[var(--accent-base)] text-[11px] uppercase tracking-wider">1. Data Ingestion Layer</h4>
+        <ul class="text-xs text-[var(--text-secondary)] space-y-1.5 list-disc pl-4">
+          <li><strong>93 Commercial Brands:</strong> 176 physical outlets across 5 Kecamatan + 3 borders</li>
+          <li><strong>157 OSM POIs:</strong> Live Overpass coordinates &amp; Haversine distance matrix</li>
+          <li><strong>9 Campuses:</strong> 221,000 active students (UB, UM, UMM, UIN, Polinema, etc.)</li>
+        </ul>
+      </div>
+
+      <div class="bg-slate-50/80 p-4 rounded-xl space-y-2">
+        <h4 class="font-bold text-[var(--accent-base)] text-[11px] uppercase tracking-wider">2. Econometric Demand</h4>
+        <ul class="text-xs text-[var(--text-secondary)] space-y-1.5 list-disc pl-4">
+          <li><strong>OLS Regression:</strong> R² = 0.7407 (Adj R² = 0.7258)</li>
+          <li><strong>#1 Driver:</strong> ln(Google Reviews) β = +63.25 cups/day (t = +5.64)</li>
+          <li><strong>24H Moat:</strong> +56.7 cups/day (t = +4.52)</li>
+          <li><strong>Price Elasticity:</strong> -2.889 cups per Rp 1,000 price rise</li>
+        </ul>
+      </div>
+
+      <div class="bg-slate-50/80 p-4 rounded-xl space-y-2">
+        <h4 class="font-bold text-[var(--accent-base)] text-[11px] uppercase tracking-wider">3. Financial Monte Carlo</h4>
+        <ul class="text-xs text-[var(--text-secondary)] space-y-1.5 list-disc pl-4">
+          <li><strong>Format A (Booth Rp65M):</strong> ROI 335.3%, Payback 5 mo</li>
+          <li><strong>Format B (Kopitiam Rp160M):</strong> ROI 418.9% (Top), Payback 4 mo</li>
+          <li><strong>Format C (WFC Rp265M):</strong> ROI 227.9%, Payback 6-7 mo</li>
+          <li><strong>Format D (Mega 24H Rp680M):</strong> Rp1.49B P50 Profit, Payback 6-7 mo</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-slate-50/80 rounded-xl p-5 space-y-3">
+      <h4 class="font-bold text-sm text-slate-900">Pilar Taksonomi 6 Kategori Pasar Malang</h4>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-xs">
+        <div class="p-3 bg-white border border-slate-200/80 rounded-xl shadow-xs">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-[#0072B2] mr-1.5"></span>
+          <strong class="text-slate-900">Tier 1: National Grab &amp; Go</strong>
+          <p class="text-[var(--text-muted)] mt-1">Kopi Kenangan, Tomoro, Fore, Point Coffee (Kecepatan tinggi, AOV Rp18-24k)</p>
+        </div>
+        <div class="p-3 bg-white border border-slate-200/80 rounded-xl shadow-xs">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-[#D55E00] mr-1.5"></span>
+          <strong class="text-slate-900">Tier 2: Local Scale Champions</strong>
+          <p class="text-[var(--text-muted)] mt-1">Pesenkopi Plus, Nakoa, Dialoogi, Lafayette, Haya Espresso Bar (Sawojajar)</p>
+        </div>
+        <div class="p-3 bg-white border border-slate-200/80 rounded-xl shadow-xs">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-[#E69F00] mr-1.5"></span>
+          <strong class="text-slate-900">Tier 3: Modern Kopitiam</strong>
+          <p class="text-[var(--text-muted)] mt-1">Kopitiam Jokolet, Koetjink, Tjap Giling (Margin tertinggi 74%, tahan krisis)</p>
+        </div>
+        <div class="p-3 bg-white border border-slate-200/80 rounded-xl shadow-xs">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-[#009E73] mr-1.5"></span>
+          <strong class="text-slate-900">Tier 4: 24H Mega-Hubs</strong>
+          <p class="text-[var(--text-muted)] mt-1">Kopi Studio 24, Bento Kopi, Semusim, Garasi 24 (Volume puncak 00:00-04:00)</p>
+        </div>
+        <div class="p-3 bg-white border border-slate-200/80 rounded-xl shadow-xs">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-[#CC79A7] mr-1.5"></span>
+          <strong class="text-slate-900">Tier 5: Specialty Roasteries</strong>
+          <p class="text-[var(--text-muted)] mt-1">Bataputih, Gartenhaus, Vosco, Haya Espresso Bar (Fokus cita rasa &amp; single origin)</p>
+        </div>
+        <div class="p-3 bg-white border border-slate-200/80 rounded-xl shadow-xs">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-[#56B4E9] mr-1.5"></span>
+          <strong class="text-slate-900">Tier 6: Destination &amp; Scenic</strong>
+          <p class="text-[var(--text-muted)] mt-1">Hill House Batu, Bukit Bintang Joyo Agung, Cangar Valley (Weekend spikes)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const dialog = document.getElementById('mindmap-modal') as HTMLDialogElement | null;
+  const closeBtn = document.getElementById('close-mindmap');
+  const openTriggers = document.querySelectorAll('[data-open-mindmap]');
+
+  openTriggers.forEach(btn => {
+    btn.addEventListener('click', () => {
+      dialog?.showModal();
+    });
+  });
+
+  closeBtn?.addEventListener('click', () => {
+    dialog?.close();
+  });
+
+  dialog?.addEventListener('click', (e) => {
+    if (e.target === dialog) dialog.close();
+  });
+</script>

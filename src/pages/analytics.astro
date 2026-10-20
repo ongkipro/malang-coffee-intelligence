@@ -1,0 +1,28 @@
+---
+import AppShell from '../components/layout/AppShell.astro';
+import EconometricLabIsland from '../components/islands/EconometricLabIsland';
+import MenuEngineeringIsland from '../components/islands/MenuEngineeringIsland';
+---
+
+<AppShell title="Econometric Demand & Menu Lab" activePath="/analytics">
+  <div class="space-y-6">
+    <div class="border-b border-[var(--border-default)] pb-3">
+      <h1 class="text-xl font-bold tracking-tight text-[var(--text-primary)]">
+        OLS Econometric Demand &amp; Menu Engineering Lab
+      </h1>
+      <p class="text-xs text-[var(--text-secondary)] mt-0.5">
+        Simulasi peramalan volume harian Kopi Susu berbasis regresi multivariat (R² = 0.7407), diagnostik RevPASH, dan pengujian sensitivitas HPP (COGS).
+      </p>
+    </div>
+
+    <!-- Section 1: OLS Demand & RevPASH Predictor -->
+    <section>
+      <EconometricLabIsland client:load />
+    </section>
+
+    <!-- Section 2: Menu Engineering Matrix & BOM COGS -->
+    <section class="pt-2">
+      <MenuEngineeringIsland client:load />
+    </section>
+  </div>
+</AppShell>

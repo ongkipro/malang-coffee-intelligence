@@ -1,0 +1,28 @@
+---
+import AppShell from '../components/layout/AppShell.astro';
+import FinancialSimIsland from '../components/islands/FinancialSimIsland';
+import DeliveryMarginIsland from '../components/islands/DeliveryMarginIsland';
+---
+
+<AppShell title="12-Month Monte Carlo P&L & Delivery Simulator" activePath="/simulator">
+  <div class="space-y-6">
+    <div class="border-b border-[var(--border-default)] pb-3">
+      <h1 class="text-xl font-bold tracking-tight text-[var(--text-primary)]">
+        12-Month Academic Monte Carlo P&amp;L &amp; Delivery Margin Simulator
+      </h1>
+      <p class="text-xs text-[var(--text-secondary)] mt-0.5">
+        Stress-test Capex payback di 4 format bisnis F&amp;B Malang menghadapi libur semester mahasiswa dan kalkulasi proteksi margin GoFood/ShopeeFood.
+      </p>
+    </div>
+
+    <!-- Section 1: 12-Month Academic Calendar Monte Carlo -->
+    <section>
+      <FinancialSimIsland client:load />
+    </section>
+
+    <!-- Section 2: Delivery Aggregator Margin Engine -->
+    <section class="pt-2">
+      <DeliveryMarginIsland client:load />
+    </section>
+  </div>
+</AppShell>

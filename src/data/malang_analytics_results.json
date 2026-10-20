@@ -1,0 +1,147 @@
+{
+  "dataset_coverage": {
+    "osm_raw_elements": 164,
+    "osm_named_pois": 157,
+    "deep_profiled_brands": 93,
+    "total_physical_outlets_represented": 176,
+    "estimated_daily_cups_across_128_outlets": 39728,
+    "estimated_daily_kopi_susu_cups_across_128_outlets": 25570,
+    "estimated_annual_kopi_susu_cups_across_128_outlets": 9333160
+  },
+  "ols_multivariate_regression": {
+    "dependent_variable": "est_daily_cups_blended",
+    "r_squared": 0.7407,
+    "adj_r_squared": 0.7258,
+    "sample_size_n": 93,
+    "coefficients": {
+      "intercept": {
+        "beta": -238.767,
+        "se": 72.894,
+        "t_stat": -3.28
+      },
+      "seating_capacity_per_seat": {
+        "beta": 0.331,
+        "se": 0.108,
+        "t_stat": 3.07
+      },
+      "is_24h_dummy": {
+        "beta": 56.703,
+        "se": 12.536,
+        "t_stat": 4.52
+      },
+      "price_per_1000_rp": {
+        "beta": -2.889,
+        "se": 0.765,
+        "t_stat": -3.78
+      },
+      "log_gmaps_reviews": {
+        "beta": 63.25,
+        "se": 11.211,
+        "t_stat": 5.64
+      },
+      "campus_gravity_per_100": {
+        "beta": 16.599,
+        "se": 10.83,
+        "t_stat": 1.53
+      }
+    }
+  },
+  "monte_carlo_12_month_archetypes": {
+    "Format_A_GrabAndGo_Booth": {
+      "capex_rp": 65000000,
+      "annual_net_profit_p10_rp": 198436831,
+      "annual_net_profit_p50_rp": 217973978,
+      "annual_net_profit_p90_rp": 237764157,
+      "annual_roi_p50_pct": 335.3,
+      "payback_months_p50": 5,
+      "payback_months_p90": 5,
+      "prob_monthly_deficit_pct": 0.01,
+      "monthly_p50_net_profit_curve_rp": {
+        "Jan": 13300400,
+        "Feb": 12463852,
+        "Mar": 18789602,
+        "Apr": 19742383,
+        "Mei": 20579645,
+        "Jun": 21846545,
+        "Jul": 12862805,
+        "Agu": 11969000,
+        "Sep": 23752503,
+        "Okt": 21300464,
+        "Nov": 21012647,
+        "Des": 20161010
+      }
+    },
+    "Format_B_Heritage_Kopitiam": {
+      "capex_rp": 160000000,
+      "annual_net_profit_p10_rp": 618350625,
+      "annual_net_profit_p50_rp": 670166798,
+      "annual_net_profit_p90_rp": 722122121,
+      "annual_roi_p50_pct": 418.9,
+      "payback_months_p50": 4,
+      "payback_months_p90": 4,
+      "prob_monthly_deficit_pct": 0.0,
+      "monthly_p50_net_profit_curve_rp": {
+        "Jan": 49282199,
+        "Feb": 48412310,
+        "Mar": 56695706,
+        "Apr": 57619351,
+        "Mei": 59057676,
+        "Jun": 60900115,
+        "Jul": 48832451,
+        "Agu": 47279440,
+        "Sep": 63164969,
+        "Okt": 60068552,
+        "Nov": 59463904,
+        "Des": 58355203
+      }
+    },
+    "Format_C_MidSize_Nugas_WFC": {
+      "capex_rp": 265000000,
+      "annual_net_profit_p10_rp": 545965509,
+      "annual_net_profit_p50_rp": 604021837,
+      "annual_net_profit_p90_rp": 661929081,
+      "annual_roi_p50_pct": 227.9,
+      "payback_months_p50": 6,
+      "payback_months_p90": 7,
+      "prob_monthly_deficit_pct": 0.18,
+      "monthly_p50_net_profit_curve_rp": {
+        "Jan": 26313033,
+        "Feb": 22853083,
+        "Mar": 54421711,
+        "Apr": 57681376,
+        "Mei": 61463969,
+        "Jun": 68903684,
+        "Jul": 24687552,
+        "Agu": 20155777,
+        "Sep": 77566100,
+        "Okt": 65655742,
+        "Nov": 64826540,
+        "Des": 59538030
+      }
+    },
+    "Format_D_Mega_24H_Hub": {
+      "capex_rp": 680000000,
+      "annual_net_profit_p10_rp": 1359625378,
+      "annual_net_profit_p50_rp": 1497561743,
+      "annual_net_profit_p90_rp": 1634322415,
+      "annual_roi_p50_pct": 220.2,
+      "payback_months_p50": 6,
+      "payback_months_p90": 7,
+      "prob_monthly_deficit_pct": 0.04,
+      "monthly_p50_net_profit_curve_rp": {
+        "Jan": 73169707,
+        "Feb": 65812770,
+        "Mar": 133716909,
+        "Apr": 140213466,
+        "Mei": 147641166,
+        "Jun": 163533987,
+        "Jul": 69342989,
+        "Agu": 59410177,
+        "Sep": 183189200,
+        "Okt": 158171782,
+        "Nov": 155950737,
+        "Des": 143629970
+      }
+    }
+  }
+}

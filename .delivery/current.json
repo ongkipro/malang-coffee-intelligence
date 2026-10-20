@@ -1,0 +1,14 @@
+{
+  "activeRun": null,
+  "lastRun": {
+    "finishedAt": "2026-10-20T10:31:40Z",
+    "result": "FAIL",
+    "runId": "RUN-20261020T103139Z-ac76496c"
+  },
+  "observedHead": null,
+  "observedState": "PLANNED",
+  "project": "malang-coffee-intelligence",
+  "schemaVersion": 1,
+  "statusAuthority": "STATUS.md",
+  "updatedAt": "2026-10-20T10:31:40Z"
+}

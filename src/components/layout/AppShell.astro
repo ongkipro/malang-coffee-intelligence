@@ -1,0 +1,150 @@
+---
+import '../../styles/global.css';
+import MindmapModal from './MindmapModal.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  activePath?: string;
+}
+
+const { title, description = 'Malang Coffee Shop & Kopi Susu Market Intelligence Workstation', activePath = Astro.url.pathname } = Astro.props;
+
+const navItems = [
+  { href: '/', label: '1. Executive Overview', icon: 'M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z' },
+  { href: '/explorer', label: '2. 93-Brand & Map Explorer', icon: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z' },
+  { href: '/analytics', label: '3. OLS & Menu Lab', icon: 'M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z' },
+  { href: '/simulator', label: '4. Financial & Delivery P&L', icon: 'M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z' },
+  { href: '/insights', label: '5. VoC Sentiment & Playbooks', icon: 'M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 12h-2v-2h2v2zm0-4h-2V6h2v4z' },
+];
+
+const corridorJumps = [
+  { href: '/explorer?kecamatan=Lowokwaru', name: 'Lowokwaru', count: '50 Brands' },
+  { href: '/explorer?kecamatan=Klojen', name: 'Klojen (Heritage)', count: '26 Brands' },
+  { href: '/explorer?kecamatan=Kedungkandang+%28Sawojajar%29', name: 'Sawojajar (Haya/SWAG)', count: '6 Brands' },
+  { href: '/explorer?kecamatan=Blimbing', name: 'Blimbing (Sulfat)', count: '4 Brands' },
+  { href: '/explorer?kecamatan=Sukun', name: 'Sukun (Unikama)', count: '4 Brands' },
+];
+---
+
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} — Malang Coffee Intelligence</title>
+    <meta name="description" content={description} />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  </head>
+  <body class="bg-[var(--bg-canvas)] text-[var(--text-primary)] min-h-screen flex flex-col antialiased">
+    <!-- Top Persistent Header -->
+    <header class="sticky top-0 z-30 h-14 bg-white/95 backdrop-blur-xs border-b border-slate-200/80 px-4 sm:px-6 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <button type="button" id="mobile-sidebar-toggle" class="md:hidden p-1.5 rounded-lg border border-slate-200 text-slate-600 hover:text-slate-900 cursor-pointer">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+        <a href="/" class="flex items-center gap-2.5 font-bold text-sm sm:text-base tracking-tight text-slate-900">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-[var(--accent-base)] text-white text-xs font-mono font-bold shadow-xs">☕</span>
+          <span>Malang Coffee Intelligence</span>
+        </a>
+        <span class="hidden lg:inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-blue-50 text-blue-700">
+          93 Brands · 176 Outlets · 157 OSM POIs · WIB
+        </span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button type="button" data-open-mindmap class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 transition-colors shadow-2xs cursor-pointer">
+          <svg class="w-3.5 h-3.5 text-[var(--accent-base)]" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+          </svg>
+          <span class="hidden sm:inline">Mindmap &amp; Arsitektur</span>
+        </button>
+
+        <button type="button" id="share-btn" class="inline-flex items-center gap-1 px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-[var(--accent-base)] hover:bg-[var(--accent-hover)] text-white transition-colors shadow-2xs cursor-pointer">
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+          </svg>
+          <span>Share</span>
+        </button>
+      </div>
+    </header>
+
+    <div class="flex-1 flex max-w-[1680px] w-full mx-auto">
+      <!-- Desktop Sidebar -->
+      <aside id="sidebar" class="hidden md:flex flex-col w-60 border-r border-slate-200/80 bg-[var(--bg-canvas)] p-4 shrink-0 justify-between">
+        <div class="space-y-6">
+          <div>
+            <span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider px-2">Workstation Modules</span>
+            <nav class="mt-2 space-y-1">
+              {navItems.map((item) => {
+                const isActive = activePath === item.href || (item.href !== '/' && activePath.startsWith(item.href));
+                return (
+                  <a
+                    href={item.href}
+                    class={`flex items-center gap-2.5 px-3 py-2 text-xs font-medium rounded-lg transition-all ${
+                      isActive
+                        ? 'bg-blue-50 text-[var(--accent-base)] font-semibold'
+                        : 'text-slate-600 hover:bg-slate-200/60 hover:text-slate-900'
+                    }`}
+                  >
+                    <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                      <path d={item.icon} />
+                    </svg>
+                    <span>{item.label}</span>
+                  </a>
+                );
+              })}
+            </nav>
+          </div>
+
+          <div>
+            <span class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider px-2">Corridor Shortcuts</span>
+            <div class="mt-2 space-y-0.5">
+              {corridorJumps.map((c) => (
+                <a
+                  href={c.href}
+                  class="flex items-center justify-between px-3 py-1.5 text-xs text-slate-600 hover:text-slate-900 hover:bg-slate-200/50 rounded-lg transition-colors"
+                >
+                  <span class="truncate">{c.name}</span>
+                  <span class="text-[10px] text-slate-400 font-mono">{c.count}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-slate-200/80 text-[11px] text-slate-400 space-y-1">
+          <p>Kota Malang Coffee Corpus v1.0</p>
+          <p class="font-mono">OLS R² = 0.7407 · N=93</p>
+        </div>
+      </aside>
+
+      <!-- Main Analytical Canvas -->
+      <main class="flex-1 p-4 sm:p-6 min-w-0 overflow-y-auto">
+        <slot />
+      </main>
+    </div>
+
+    <!-- Mindmap Modal Component -->
+    <MindmapModal />
+
+    <script>
+      // Share URL action
+      const shareBtn = document.getElementById('share-btn');
+      shareBtn?.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          const original = shareBtn.innerHTML;
+          shareBtn.innerHTML = `<span>Copied!</span>`;
+          setTimeout(() => {
+            shareBtn.innerHTML = original;
+          }, 2000);
+        } catch {
+          alert(window.location.href);
+        }
+      });
+    </script>
+  </body>
+</html>

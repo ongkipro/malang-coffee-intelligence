@@ -1,0 +1,22 @@
+---
+import AppShell from '../components/layout/AppShell.astro';
+import VocPlaybookIsland from '../components/islands/VocPlaybookIsland';
+---
+
+<AppShell title="VoC Sentiment & Corridor Playbooks" activePath="/insights">
+  <div class="space-y-6">
+    <div class="border-b border-[var(--border-default)] pb-3">
+      <h1 class="text-xl font-bold tracking-tight text-[var(--text-primary)]">
+        Voice-of-Customer (VoC) Sentiment &amp; Blue-Ocean Corridor Playbooks
+      </h1>
+      <p class="text-xs text-[var(--text-secondary)] mt-0.5">
+        Analisis NLP dari 48.000+ review Google Maps &amp; GoFood serta rekomendasi lokasi outlet kopi berdasarkan kesiapan Capex modal investor.
+      </p>
+    </div>
+
+    <!-- Section 1: VoC NLP & Playbooks Island -->
+    <section>
+      <VocPlaybookIsland client:visible />
+    </section>
+  </div>
+</AppShell>

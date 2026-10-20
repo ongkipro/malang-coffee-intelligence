@@ -1,0 +1,108 @@
+---
+import AppShell from '../components/layout/AppShell.astro';
+import KpiCard from '../components/layout/KpiCard.astro';
+import MacroChartsIsland from '../components/islands/MacroChartsIsland';
+---
+
+<AppShell title="Executive Macro & Market Mindmap" activePath="/">
+  <div class="space-y-6">
+    <!-- Header Page Description -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-[var(--border-default)] pb-4">
+      <div>
+        <h1 class="text-xl font-bold tracking-tight text-[var(--text-primary)]">
+          Malang Coffee Shop &amp; Kopi Susu Market Intelligence Workstation
+        </h1>
+        <p class="text-xs text-[var(--text-secondary)] mt-0.5">
+          Sintesis Analitik Berbasis 93 Brand Komersial (176 Outlet), 157 Titik Kafe OSM, Model Ekonometrika OLS (R² = 0.7407), dan Simulasi Monte Carlo 12 Bulan.
+        </p>
+      </div>
+      <div class="flex items-center gap-2">
+        <a
+          href="/explorer"
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded bg-[var(--accent-base)] text-white hover:bg-[var(--accent-hover)] transition-colors"
+        >
+          <span>Buka 93-Brand Explorer</span>
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Row 1: 4 KPI Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <KpiCard
+        title="City-Wide Kopi Susu TAM"
+        value="72.600 cup/hari"
+        badgeText="Rp 495B–540B / thn"
+        badgeVariant="info"
+        footnote="Estimasi 1.450 outlet Malang Raya (64.4% pangsa minuman kopi)"
+        href="/analytics"
+      />
+      <KpiCard
+        title="Sample Kopi Susu Volume"
+        value="25.570 cup/hari"
+        badgeText="9.33 Juta cup / thn"
+        badgeVariant="success"
+        footnote="Total 93 brand komersial (176 outlet fisik terverifikasi)"
+        href="/explorer"
+      />
+      <KpiCard
+        title="OLS Demand Predictor"
+        value="R² = 74,1%"
+        badgeText="Adj R² 72,6%"
+        badgeVariant="warning"
+        footnote="ln(Reviews) t = +5.64, 24H t = +4.52, Harga/1k t = -3.78"
+        href="/analytics"
+      />
+      <KpiCard
+        title="Top ROI Format (Monte Carlo)"
+        value="418,9% / thn"
+        badgeText="Payback 4 Bulan"
+        badgeVariant="success"
+        footnote="Format B: Modern Heritage Kopitiam (Capex Rp 160 Juta)"
+        href="/simulator"
+      />
+    </div>
+
+    <!-- Row 2: Interactive Macro Charts Island -->
+    <MacroChartsIsland client:visible />
+
+    <!-- Row 3: Strategic Executive Takeaways -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+      <div class="bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-xl p-5 shadow-[0_1px_3px_0_rgba(15,23,42,0.03)] hover:border-slate-300 transition-all">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="w-2 h-2 rounded-full bg-[var(--accent-base)]"></span>
+          <h4 class="font-semibold text-xs text-[var(--text-primary)] uppercase tracking-wider">
+            1. Arbitrase Koridor Komuter (Sawojajar &amp; Sulfat)
+          </h4>
+        </div>
+        <p class="text-[var(--text-secondary)] leading-relaxed">
+          Kawasan Lowokwaru berada di zona <span class="font-medium text-slate-800">hyper-red ocean</span> (50 brand / 53.8% pangsa) dengan risiko penurunan drastis saat libur semester (Juli–Agustus &amp; Januari–Februari). Koridor <strong class="text-slate-900">Sawojajar (Danau Toba / Velodrome)</strong> yang dipimpin oleh <strong class="text-slate-900">Haya Espresso Bar, Easy Breezy, SWAG, Uma, dan Daily Dose</strong> menawarkan perputaran stabil harian dari segmen keluarga, pekerja lokal, dan komuter residensial mandiri tanpa guncangan kalender akademik.
+        </p>
+      </div>
+
+      <div class="bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-xl p-5 shadow-[0_1px_3px_0_rgba(15,23,42,0.03)] hover:border-slate-300 transition-all">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="w-2 h-2 rounded-full bg-[var(--status-success-mark)]"></span>
+          <h4 class="font-semibold text-xs text-[var(--text-primary)] uppercase tracking-wider">
+            2. Keunggulan Unit Economics Kopitiam (Format B)
+          </h4>
+        </div>
+        <p class="text-[var(--text-secondary)] leading-relaxed">
+          Simulasi Monte Carlo (5.000 iterasi x 24 bulan) membuktikan <strong class="text-slate-900">Format B (Modern Heritage Kopitiam)</strong> mencetak probabilitas defisit bulanan <strong class="text-emerald-700">0.0%</strong> dengan Annual Net Profit P50 sebesar <strong class="text-slate-900">Rp 670,17 Juta</strong> dan payback dalam <strong class="text-emerald-700">4 bulan</strong>. Daya ungkit margin diperoleh dari HPP Kopi Susu Butter (margin kotor 74%) serta <em>food attach</em> tinggi (roti srikaya, telur setengah matang, mie).
+        </p>
+      </div>
+
+      <div class="bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-xl p-5 shadow-[0_1px_3px_0_rgba(15,23,42,0.03)] hover:border-slate-300 transition-all">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="w-2 h-2 rounded-full bg-[var(--status-danger-mark)]"></span>
+          <h4 class="font-semibold text-xs text-[var(--text-primary)] uppercase tracking-wider">
+            3. Peringatan Erosi Margin GoFood &amp; ShopeeFood
+          </h4>
+        </div>
+        <p class="text-[var(--text-secondary)] leading-relaxed">
+          Skema komisi agregator (20% + Rp 1.000) dan beban subsidi promo merchant (10%–20%) mengikis margin bersih hingga di bawah Rp 4.000 per cup jika harga aplikasi tidak dinaikkan minimal <strong class="text-rose-700">25%–28%</strong> di atas harga <em>dine-in</em>. Operator wajib mengoptimalkan paket bundling / literan 1L guna mendongkrak AOV ke atas Rp 50.000.
+        </p>
+      </div>
+    </div>
+  </div>
+</AppShell>

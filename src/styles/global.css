@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* 1. Surfaces & Neutrals — Modern Analytical Workstation (Linear / Stripe Sigma inspiration) */
+    --bg-canvas: #f8fafc;          /* Modern subtle slate canvas */
+    --bg-surface: #ffffff;         /* Clean pure white card surface */
+    --bg-subtle: #f1f5f9;          /* Subtle hover and secondary panel */
+    --bg-muted: #e2e8f0;           /* Chip backgrounds and dividers */
+    --border-default: #e2e8f0;     /* Ultra-clean 1px structural divider */
+    --border-subtle: #f1f5f9;      /* Ultra-light hairline divider */
+    --border-strong: #cbd5e1;      /* Focused input / active element */
+    --divider-subtle: #f1f5f9;     /* Light table row dividers */
+
+    /* 2. Typography Hierarchy (WCAG AA >= 4.5:1 verified) */
+    --text-primary: #0f172a;       /* Deep slate 900 for high readability */
+    --text-secondary: #475569;     /* Slate 600 for headers and captions */
+    --text-muted: #64748b;         /* Slate 500 for secondary metrics and hints */
+    --text-disabled: #94a3b8;      /* Slate 400 */
+
+    /* 3. Restrained Brand Accent (Modern Cobalt) */
+    --accent-base: #2563eb;        /* High-contrast modern cobalt */
+    --accent-hover: #1d4ed8;
+    --accent-subtle: #eff6ff;      /* Selected row / active pill background */
+    --accent-fg: #ffffff;
+
+    /* 4. Semantic Status Tokens (3-Cue Contrast-Verified Marks & Text-on-Tint) */
+    --status-success-mark: #10b981;
+    --status-success-bg: #ecfdf5;
+    --status-success-text: #065f46;
+
+    --status-warning-mark: #f59e0b;
+    --status-warning-bg: #fffbeb;
+    --status-warning-text: #92400e;
+
+    --status-danger-mark: #ef4444;
+    --status-danger-bg: #fef2f2;
+    --status-danger-text: #991b1b;
+
+    --status-info-mark: #0284c7;
+    --status-info-bg: #f0f9ff;
+    --status-info-text: #075985;
+
+    /* 5. Okabe-Ito Colorblind-Safe Categorical Palette */
+    --chart-1: #0072B2; /* Tier 1: National Grab-and-Go */
+    --chart-2: #D55E00; /* Tier 2: Local Scale Champions */
+    --chart-3: #E69F00; /* Tier 3: Modern Kopitiam */
+    --chart-4: #009E73; /* Tier 4: 24H Student Mega-Hubs */
+    --chart-5: #CC79A7; /* Tier 5: Specialty Roasteries */
+    --chart-6: #56B4E9; /* Tier 6: Destination & Heritage */
+    --chart-7: #B45309; /* Campus Gravity Ring */
+    --chart-8: #64748B; /* City Benchmark Reference */
+  }
+
+  body {
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* Mandatory Tabular Numerals */
+.num-tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1, "zero" 1;
+}
+
+/* Modern Card / Panel utility without box-in-a-box syndrome */
+.panel-modern {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.03), 0 1px 2px -1px rgba(15, 23, 42, 0.03);
+}
+
+.panel-subtle {
+  background-color: var(--bg-canvas);
+  border-radius: 0.5rem;
+}
+
+/* Sleek Minimalist Scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Leaflet Map Custom Container */
+.leaflet-container {
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif !important;
+  background-color: #f1f5f9 !important;
+  border-radius: 0.75rem;
+}
+
+/* Polished Modern Range Inputs */
+input[type="range"] {
+  accent-color: var(--accent-base);
+}

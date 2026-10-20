@@ -1,0 +1,50 @@
+---
+import AppShell from '../components/layout/AppShell.astro';
+import BrandExplorerTable from '../components/islands/BrandExplorerTable';
+import MalangGeoMap from '../components/islands/MalangGeoMap';
+import { getCollection } from 'astro:content';
+
+const brandsCollection = await getCollection('brands');
+const osmPoisCollection = await getCollection('osmPois');
+const campusesCollection = await getCollection('campuses');
+
+const brands = brandsCollection.map(b => b.data);
+const pois = osmPoisCollection.map(p => p.data);
+const campuses = campusesCollection.map(c => c.data);
+---
+
+<AppShell title="93-Brand & Geospatial Explorer" activePath="/explorer">
+  <div class="space-y-6">
+    <!-- Header Title & Action -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-[var(--border-default)] pb-3">
+      <div>
+        <h1 class="text-xl font-bold tracking-tight text-[var(--text-primary)]">
+          93-Brand Data Explorer &amp; Geospatial Map
+        </h1>
+        <p class="text-xs text-[var(--text-secondary)] mt-0.5">
+          Eksplorasi interaktif 93 brand komersial (176 outlet fisik), 157 titik kafe OSM, dan ring gravitasi 9 universitas Malang Raya.
+        </p>
+      </div>
+
+      <!-- Quick View Toggle Tab -->
+      <div class="flex items-center gap-1 p-1 bg-slate-100 rounded-lg text-xs font-medium">
+        <a href="#table-section" class="px-3 py-1 rounded-md bg-white text-[var(--text-primary)] font-semibold shadow-xs">
+          Data Grid
+        </a>
+        <a href="#map-section" class="px-3 py-1 rounded-md text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">
+          Geospatial Map
+        </a>
+      </div>
+    </div>
+
+    <!-- Section 1: TanStack Table & Comparison Drawer Island -->
+    <section id="table-section">
+      <BrandExplorerTable client:load initialBrands={brands} />
+    </section>
+
+    <!-- Section 2: Leaflet Geospatial Map Island -->
+    <section id="map-section" class="pt-4">
+      <MalangGeoMap client:only="react" brands={brands} pois={pois} campuses={campuses} />
+    </section>
+  </div>
+</AppShell>

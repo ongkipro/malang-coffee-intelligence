@@ -1,0 +1,83 @@
+[
+  {
+    "name": "UB (Universitas Brawijaya)",
+    "code": "UB",
+    "lat": -7.9526,
+    "lon": 112.6144,
+    "active_students": 70000,
+    "kecamatan": "Lowokwaru",
+    "id": "UB"
+  },
+  {
+    "name": "UM (Universitas Negeri Malang)",
+    "code": "UM",
+    "lat": -7.9622,
+    "lon": 112.6175,
+    "active_students": 42000,
+    "kecamatan": "Lowokwaru",
+    "id": "UM"
+  },
+  {
+    "name": "UMM Kampus 3 (Muhammadiyah)",
+    "code": "UMM",
+    "lat": -7.9215,
+    "lon": 112.596,
+    "active_students": 38000,
+    "kecamatan": "Lowokwaru (Tlogomas)",
+    "id": "UMM"
+  },
+  {
+    "name": "UIN Maliki Malang",
+    "code": "UIN",
+    "lat": -7.9547,
+    "lon": 112.6074,
+    "active_students": 24000,
+    "kecamatan": "Lowokwaru",
+    "id": "UIN"
+  },
+  {
+    "name": "Polinema (Politeknik Negeri Malang)",
+    "code": "Polinema",
+    "lat": -7.9467,
+    "lon": 112.6156,
+    "active_students": 22000,
+    "kecamatan": "Lowokwaru",
+    "id": "Polinema"
+  },
+  {
+    "name": "UNISMA (Islam Malang)",
+    "code": "UNISMA",
+    "lat": -7.9365,
+    "lon": 112.6068,
+    "active_students": 18000,
+    "kecamatan": "Lowokwaru",
+    "id": "UNISMA"
+  },
+  {
+    "name": "ITN Malang (Kampus 1)",
+    "code": "ITN",
+    "lat": -7.9572,
+    "lon": 112.6115,
+    "active_students": 10000,
+    "kecamatan": "Lowokwaru",
+    "id": "ITN"
+  },
+  {
+    "name": "BINUS Malang (Araya)",
+    "code": "BINUS",
+    "lat": -7.9375,
+    "lon": 112.681,
+    "active_students": 6500,
+    "kecamatan": "Blimbing",
+    "id": "BINUS"
+  },
+  {
+    "name": "Univ. Ma Chung (Tidar)",
+    "code": "MaChung",
+    "lat": -7.9585,
+    "lon": 112.5895,
+    "active_students": 4500,
+    "kecamatan": "Sukun",
+    "id": "MaChung"
+  }
+]
